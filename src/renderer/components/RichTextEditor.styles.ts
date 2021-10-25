@@ -6,25 +6,6 @@ import css from 'react-quill/dist/quill.global.css';
 export const StyledReactQuill = styled(ReactQuill)`
   ${css};
 
-  // keeps the editor content from pushing items to the left: TO DO - add Media Queries
-  .ql-editor {
-    @media screen and (width: 1200px) {
-      width: 37em;
-    }
-
-    @media screen and (width: 1440px) {
-      width: 45em;
-    }
-
-    @media screen and (width: 1440px) {
-      width: 45em;
-    }
-
-    @media screen and (width: 1920px) {
-      width: 61em;
-    }
-  }
-
   .ql-toolbar {
     border: none;
     border-bottom: 1px solid var(--primary-400);

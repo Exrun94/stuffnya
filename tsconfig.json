@@ -26,7 +26,8 @@
   },
   "paths": {
     "@node_modules/localbase": ["types/localbase.d.ts"],
-    "@node_modules/react-light-notifications": ["types/react-light-notifications.d.ts"]
+    "@node_modules/react-light-notifications": ["types/react-light-notifications.d.ts"],
+    "src/renderer/quill.global.css": ["src/renderer/quill.global.css"]
   },
   "include": ["src/**/*", "types", "assets/icons", "assets/assets.d.ts", "src/renderer/types/index.d.ts"],
   "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"]

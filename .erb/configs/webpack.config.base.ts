@@ -35,8 +35,8 @@ export default {
    * Determine the array of extensions that should be used to resolve modules.
    */
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
-    modules: [webpackPaths.srcPath, 'node_modules'],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx', '.css'],
+    modules: [webpackPaths.srcPath, 'node_modules', './src/renderer'],
   },
 
   plugins: [

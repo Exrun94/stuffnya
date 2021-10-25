@@ -267,7 +267,6 @@ body{
   text-transform: uppercase;
 }
 
-
 `;
 
 export default GlobalStyle;

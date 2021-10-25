@@ -56,6 +56,7 @@ export const NotesContainer = styled.div`
 
 export const EditorContainer = styled.div`
   display: flex;
+  overflow: hidden;
   justify-content: center;
   background-color: var(--primary-700);
   grid-row-start: 2;

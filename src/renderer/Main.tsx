@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStore } from 'react-context-hook';
 import { CategoriesContextProvider } from './context/CategoriesContext';
-import GlobalStyle from './global.styles';
+import GlobalStyle from './Global.styles';
 import Layout from './layout/Layout';
 
 const Main = () => {
