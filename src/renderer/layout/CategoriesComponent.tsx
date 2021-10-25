@@ -1,5 +1,7 @@
 import React from 'react';
 import Categories from '../components/Categories';
+import Tags from '../components/Tags';
+import QuickLinks from '../components/QuickLinks';
 import { CategoriesContainer } from './Layout.styles';
 
 const CategoriesComponent = () => {
@@ -7,6 +9,8 @@ const CategoriesComponent = () => {
     <>
       <CategoriesContainer>
         <Categories />
+        <Tags />
+        <QuickLinks />
       </CategoriesContainer>
     </>
   );
