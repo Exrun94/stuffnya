@@ -37,6 +37,7 @@ export const SideNavContainer = styled.div`
 `;
 
 export const CategoriesContainer = styled.div`
+  overflow: auto;
   background-color: var(--primary-800);
   grid-row-start: 2;
   grid-column-start: 2;
