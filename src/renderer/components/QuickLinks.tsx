@@ -6,6 +6,7 @@ import {
   Container,
   IconLeft,
   IconRight,
+  RainBowText,
   ToggledWrapper,
 } from './Categories.styles';
 
@@ -31,7 +32,9 @@ const QuickLinks = () => {
         QUICK LINKS
         <IconRight src={icon} />
       </Container>
-      <ToggledWrapper open={toggle}>Comming Soon &trade;</ToggledWrapper>
+      <ToggledWrapper open={toggle}>
+        <RainBowText>Comming Soon &trade;</RainBowText>
+      </ToggledWrapper>
     </>
   );
 };

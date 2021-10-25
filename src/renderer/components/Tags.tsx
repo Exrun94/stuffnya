@@ -7,6 +7,7 @@ import {
   IconLeft,
   IconRight,
   ToggledWrapper,
+  RainBowText,
 } from './Categories.styles';
 
 let icon = plusIcon;
@@ -31,7 +32,9 @@ const Tags = () => {
         TAGS
         <IconRight src={icon} />
       </Container>
-      <ToggledWrapper open={toggle}>Comming Soon &trade;</ToggledWrapper>
+      <ToggledWrapper open={toggle}>
+        <RainBowText>Comming Soon &trade;</RainBowText>
+      </ToggledWrapper>
     </>
   );
 };

@@ -96,3 +96,19 @@ export const CategoryName = styled.p`
   color: var(--primary-400);
   padding-left: 12px;
 `;
+
+export const RainBowText = styled.p`
+  text-align: center;
+  font-family:arial black;
+  background-image:
+    linear-gradient(90deg, red,orange,yellow,green,blue,indigo,violet);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: move 200s linear infinite;
+}
+
+@keyframes move {
+  to {
+    background-position: 4500vh;
+  }
+`;
