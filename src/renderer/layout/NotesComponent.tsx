@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NotesContainer } from './Layout.styles';
+import { ActiveContext } from '../context/ActiveContext';
 
 const NotesComponent = () => {
+  const { activeCategory } = useContext(ActiveContext);
+
+  console.log(activeCategory);
+
   return (
     <>
-      <NotesContainer />
+      <NotesContainer>
+        <p>{activeCategory}</p>
+      </NotesContainer>
     </>
   );
 };

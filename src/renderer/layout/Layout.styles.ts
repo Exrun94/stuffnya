@@ -48,6 +48,8 @@ export const CategoriesContainer = styled.div`
 `;
 
 export const NotesContainer = styled.div`
+  display: flex;
+  overflow: hidden;
   background-color: var(--primary-600);
   grid-row-start: 2;
   grid-column-start: 3;

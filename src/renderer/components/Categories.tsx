@@ -8,6 +8,7 @@ import plusIcon from '../../../assets/icons/plus.svg';
 import { Container, IconLeft, IconRight, ToggledWrapper, AddNew, ColorIndicator, CategoryList, CategoryName, } from './Categories.styles';
 import { getCategories as fetchCategories } from '../db/db';
 import { CategoriesContext } from '../context/CategoriesContext';
+import { ActiveContext } from '../context/ActiveContext';
 
 let icon = minusIcon;
 
@@ -24,6 +25,7 @@ const Categories = () => {
   const [active, setActive] = useState({} as DataProps);
   const [state, setState] = useStore('state', false);
   const [data, setData] = useState<DataProps[]>([]);
+  const {setActiveCategory} = useContext(ActiveContext)
   const alert = useStoreState();
   const categoriesContext = useContext(CategoriesContext)
 
@@ -46,6 +48,11 @@ const Categories = () => {
     }
   };
 
+  const onClick = (el: DataProps): void => {
+    setActive(el);
+    setActiveCategory(el.data.name)
+  }
+
   return (
     <>
       <Container onClick={toggleSwitch}>
@@ -55,11 +62,11 @@ const Categories = () => {
       </Container>
       <ToggledWrapper open={toggle}>
         <AddNew onClick={() => setState(!state)}>+ Add New</AddNew>
-        {data.map((d) => {
+        {data.map((el) => {
         return (
-          <CategoryList key={d.key} onClick={() => setActive(d)} className={d === active ? "active" : ""}>
-            <ColorIndicator color={d.data.color}/>
-            <CategoryName>{d.data.name}</CategoryName>
+          <CategoryList key={el.key} onClick={() => onClick(el)} className={el === active ? "active" : ""}>
+            <ColorIndicator color={el.data.color}/>
+            <CategoryName>{el.data.name}</CategoryName>
           </CategoryList>
         );
       })}
