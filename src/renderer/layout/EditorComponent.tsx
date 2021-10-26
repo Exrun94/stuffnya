@@ -1,17 +1,33 @@
 import React, { useContext } from 'react';
 import { CategoriesContext } from '../context/CategoriesContext';
+import { EditorContext } from '../context/EditorContext';
 import RichTextEditor from '../components/RichTextEditor';
-import { Select, Title, Option, TagIcon, DivWrapper } from './Editor.styles';
+import {
+  Select,
+  Title,
+  Option,
+  TagIcon,
+  DivWrapper,
+  BtnWrapper,
+} from './Editor.styles';
 import { EditorContainer, EditorWrapper } from './Layout.styles';
 import tag from '../../../assets/icons/tag.svg';
+import { MainButton } from '../components/Button.styles';
 
 const EditorComponent = () => {
-  const categoriesContext = useContext(CategoriesContext);
-  const { categories } = categoriesContext;
+  const { categories } = useContext(CategoriesContext);
+  const { editor } = useContext(EditorContext);
+
+  console.log(editor);
+
   return (
     <>
       <EditorContainer>
         <EditorWrapper>
+          <BtnWrapper>
+            <MainButton width={6}>Save</MainButton>
+            <MainButton width={6}>Edit</MainButton>
+          </BtnWrapper>
           <Title>TEST</Title>
           <DivWrapper>
             <Select>

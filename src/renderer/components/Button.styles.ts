@@ -1,13 +1,13 @@
 import styled from 'styled-components/';
 
-export const MainButton = styled.button`
+export const MainButton = styled.button<{ width?: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--royal-base);
   color: #fff;
-  margin-top: 24px;
-  width: 450px;
+  margin-left: 12px;
+  width: ${(props) => props.width}rem;
   height: 32px;
   border: none;
   border-radius: 3px;

@@ -68,7 +68,7 @@ export const EditorContainer = styled.div`
 
 export const EditorWrapper = styled.div`
   width: 90%;
-  margin-top: 3rem;
+  margin-top: 2rem;
 `;
 
 export const ClientContainer = styled.div`

@@ -35,3 +35,9 @@ export const DivWrapper = styled.div`
   display: flex;
   align-items: center;
 `;
+
+export const BtnWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem;
+`;

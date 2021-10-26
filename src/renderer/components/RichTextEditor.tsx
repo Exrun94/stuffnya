@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import { EditorContext } from '../context/EditorContext';
 import { StyledReactQuill } from './RichTextEditor.styles';
 
 const modules = {
@@ -60,12 +61,12 @@ const textFormats = [
 ];
 
 function RichTextEditor() {
-  const [value, setValue] = useState('');
+  const { editor, setEditor } = useContext(EditorContext);
 
   return (
     <StyledReactQuill
-      value={value}
-      onChange={setValue}
+      value={editor}
+      onChange={setEditor}
       placeholder="Start a new Note"
       modules={modules}
       formats={textFormats}
