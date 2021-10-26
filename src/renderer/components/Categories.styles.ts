@@ -85,6 +85,9 @@ export const CategoryList = styled.div`
     cursor: pointer;
     background-color: var(--primary-600);
   }
+  &.active {
+    background-color: var(--primary-600);
+  }
 `;
 
 export const CategoryName = styled.p`

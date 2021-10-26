@@ -21,6 +21,7 @@ type DataProps = {
 
 const Categories = () => {
   const [toggle, setToggle] = useState(true);
+  const [active, setActive] = useState({} as DataProps);
   const [state, setState] = useStore('state', false);
   const [data, setData] = useState<DataProps[]>([]);
   const alert = useStoreState();
@@ -56,8 +57,8 @@ const Categories = () => {
         <AddNew onClick={() => setState(!state)}>+ Add New</AddNew>
         {data.map((d) => {
         return (
-          <CategoryList key={d.key}>
-            <ColorIndicator color={d.data.color} />
+          <CategoryList key={d.key} onClick={() => setActive(d)} className={d === active ? "active" : ""}>
+            <ColorIndicator color={d.data.color}/>
             <CategoryName>{d.data.name}</CategoryName>
           </CategoryList>
         );
