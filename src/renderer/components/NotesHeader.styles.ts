@@ -27,6 +27,7 @@ export const NotesCount = styled.p`
 export const Search = styled.input`
   background-color: transparent;
   border: 1px solid var(--primary-400);
+  border-radius: 4px;
   outline: none;
   padding: 8px;
   margin-top: 12px;

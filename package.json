@@ -224,7 +224,7 @@
     "history": "4.x.x",
     "localbase": "^0.7.5",
     "path": "^0.12.7",
-    "react": "^17.0.2",
+    "react": "^18.0.0-alpha-6c3dcc7a4-20211027",
     "react-color-palette": "^6.1.0",
     "react-context-hook": "^3.0.7",
     "react-contextmenu": "^2.14.0",
