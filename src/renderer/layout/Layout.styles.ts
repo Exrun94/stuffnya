@@ -49,6 +49,7 @@ export const CategoriesContainer = styled.div`
 
 export const NotesContainer = styled.div`
   display: flex;
+  flex-direction: column;
   overflow: hidden;
   background-color: var(--primary-600);
   grid-row-start: 2;

@@ -26,7 +26,6 @@ const EditorComponent = () => {
         <EditorWrapper>
           <BtnWrapper>
             <MainButton width={6}>Save</MainButton>
-            <MainButton width={6}>Edit</MainButton>
           </BtnWrapper>
           <Title>TEST</Title>
           <DivWrapper>

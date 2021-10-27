@@ -6,7 +6,8 @@ export const MainButton = styled.button<{ width?: number }>`
   align-items: center;
   background-color: var(--royal-base);
   color: #fff;
-  margin-left: 12px;
+  /* margin-left: 12px; */
+  gap: 5;
   width: ${(props) => props.width}rem;
   height: 32px;
   border: none;
