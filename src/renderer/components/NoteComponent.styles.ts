@@ -7,6 +7,11 @@ export const Container = styled.div`
   height: 7rem;
   padding: 8px;
   border-bottom: 1px solid black;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--primary-700);
+  }
 `;
 
 export const ColorIndicator = styled.div`
