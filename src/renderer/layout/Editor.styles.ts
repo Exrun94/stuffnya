@@ -1,13 +1,20 @@
 import styled from 'styled-components';
 
-export const Title = styled.h2`
+export const Title = styled.input`
   font-family: 'Roboto', sans-serif;
   font-size: 32px;
   font-weight: normal;
   font-weight: 400;
   line-height: 16px;
-  color: var(--primary-100);
   margin-bottom: 1rem;
+  color: white;
+  outline: none;
+  background: transparent;
+  border: none;
+
+  &::placeholder {
+    color: white;
+  }
 `;
 
 export const Select = styled.select`

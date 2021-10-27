@@ -17,14 +17,6 @@ interface UpdatedReference {
   color?: string;
 }
 
-interface NoteData {
-  value: string;
-  category: string;
-  date: string;
-  tags: string[];
-  name: string;
-}
-
 export async function addCategory(data: CategoriesData) {
   try {
     // eslint-disable-next-line @typescript-eslint/dot-notation
@@ -59,16 +51,5 @@ export async function getCategories() {
     return result;
   } catch (error) {
     return console.log(error);
-  }
-}
-
-// save editor note
-export async function addNote(data: NoteData) {
-  try {
-    // eslint-disable-next-line @typescript-eslint/dot-notation
-    const result = await db.collection('categories').add(data);
-    console.log(result);
-  } catch (error) {
-    console.log('error: ', error);
   }
 }
