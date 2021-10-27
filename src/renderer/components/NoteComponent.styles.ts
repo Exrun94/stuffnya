@@ -10,7 +10,7 @@ export const Container = styled.div`
 
   &:hover {
     cursor: pointer;
-    background-color: var(--primary-700);
+    background-color: var(--primary-800);
   }
 `;
 
