@@ -6,8 +6,8 @@ import { Container } from './Layout.styles';
 import HeaderComponent from './HeaderComponent';
 import SideNavComponent from './SideNavComponent';
 import CategoriesComponent from './CategoriesComponent';
-import NotesComponent from './EditorComponent';
-import EditorComponent from './NotesComponent';
+import EditorComponent from './EditorComponent';
+import NotesComponent from './NotesComponent';
 import ClientComponent from './ClientComponent';
 
 const Layout = () => {

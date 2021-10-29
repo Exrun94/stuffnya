@@ -10,12 +10,16 @@ export const Container = styled.div`
 
   &:hover {
     cursor: pointer;
-    background-color: var(--primary-800);
+    background-color: var(--primary-700);
+  }
+
+  &.active {
+    background-color: var(--primary-700);
   }
 `;
 
 export const ColorIndicator = styled.div`
-  border-left: 5px solid limegreen;
+  border-left: 5px solid ${(props) => props.color};
 `;
 
 export const Wrapper = styled.div`
@@ -44,7 +48,26 @@ export const Name = styled.h3`
 `;
 
 export const Content = styled.p`
+  overflow: hidden;
+  max-height: 2rem;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: var(--primary-400);
+`;
+
+export const TagsWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+`;
+
+export const Tags = styled.span`
+  background-color: var(--royal-lighter);
+  opacity: 0.7;
+  color: var(--royal-dark);
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 2px 4px 2px 4px;
+  margin-left: 4px;
 `;

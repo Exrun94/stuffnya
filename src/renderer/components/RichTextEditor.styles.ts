@@ -11,6 +11,14 @@ export const StyledReactQuill = styled(ReactQuill)`
     border-bottom: 1px solid var(--primary-400);
   }
 
+  .ql-container {
+    height: auto;
+  }
+
+  .ql-editor {
+    height: auto;
+  }
+
   .ql-container.ql-snow {
     border: none;
   }

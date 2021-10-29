@@ -1,3 +1,5 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable consistent-return */
 import React, { useContext, useState } from 'react';
 import { CategoriesContext } from '../context/CategoriesContext';
 import { EditorContext } from '../context/EditorContext';
@@ -13,13 +15,17 @@ import {
 import { EditorContainer, EditorWrapper } from './Layout.styles';
 import tag from '../../../assets/icons/tag.svg';
 import { MainButton } from '../components/Button.styles';
-import { addNote } from '../db/Notes';
+import { addNotes } from '../db/Notes';
+import { NoteContext } from '../context/NoteContext';
+import RichText from '../components/RichText';
 
 const EditorComponent = () => {
   const { categories } = useContext(CategoriesContext);
   const { editor } = useContext(EditorContext);
   const [inputValue, setInputValue] = useState<string | null>(null);
   const [category, setCategory] = useState('');
+  const [color, setColor] = useState('');
+  const { note, addNote } = useContext(NoteContext);
 
   const onSave = async () => {
     const data = {
@@ -27,10 +33,22 @@ const EditorComponent = () => {
       date: Date.now(),
       tags: [],
       name: inputValue || 'No Title',
+      category: category || categories[1].data.name, // ensures if no category is selected in the options, to use first one
+      color: color || categories[1].data.color,
     };
 
-    await addNote(data, category);
+    await addNotes(data);
   };
+
+  const getOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const index = e.target.selectedIndex;
+    const optionElement = e.target.children[index];
+    const option = optionElement.getAttribute('data-color');
+    setCategory(e.target.value);
+    setColor(option || '#fff');
+  };
+
+  console.log(categories);
 
   return (
     <>
@@ -46,19 +64,27 @@ const EditorComponent = () => {
             onChange={(e) => setInputValue(e.target.value)}
           />
           <DivWrapper>
-            <Select onChange={(e) => setCategory(e.target.value)}>
-              {categories?.map((c) => {
-                return (
-                  <Option key={c.key} value={c.data.name}>
-                    {c.data.name}
-                  </Option>
-                );
-              })}
-            </Select>
+            {addNote && (
+              <Select onChange={(e) => getOption(e)}>
+                {categories?.map((c) => {
+                  if (c.data.name !== 'ALL') {
+                    return (
+                      <Option
+                        key={c.key}
+                        value={c.data.name}
+                        data-color={c.data.color}
+                      >
+                        {c.data.name}
+                      </Option>
+                    );
+                  }
+                })}
+              </Select>
+            )}
             <TagIcon src={tag} />
-            add onclick, spawning input to add tags
           </DivWrapper>
-          <RichTextEditor />
+          {addNote && <RichTextEditor />}
+          {!addNote && <RichText note={note} />}
         </EditorWrapper>
       </EditorContainer>
     </>

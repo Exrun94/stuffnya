@@ -4,10 +4,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: grid;
   grid-template-rows: 56px auto 45px;
-  //grid-template-columns: 56px 250px 450px 1fr 173px;
-  //grid-template-columns: 56px 0.2fr 0.5fr 1fr 0.2fr;
-  //grid-template-columns: 56px 0.2fr 0.5fr 1fr 0.2fr;
-  grid-template-columns: 56px 0.3fr 0.5fr 1fr 0.3fr;
+  grid-template-columns: 56px 0.3fr 0.6fr 0.9fr 0.3fr;
   height: 100vh;
 `;
 
@@ -50,7 +47,8 @@ export const CategoriesContainer = styled.div`
 export const NotesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
   background-color: var(--primary-600);
   grid-row-start: 2;
   grid-column-start: 3;
@@ -60,7 +58,8 @@ export const NotesContainer = styled.div`
 
 export const EditorContainer = styled.div`
   display: flex;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
   justify-content: center;
   background-color: var(--primary-700);
   grid-row-start: 2;

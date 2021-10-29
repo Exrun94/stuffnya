@@ -5,17 +5,20 @@ import GlobalStyle from './Global.styles';
 import Layout from './layout/Layout';
 import { EditorContextProvider } from './context/EditorContext';
 import { ActiveContextProvider } from './context/ActiveContext';
+import { NoteContextProvider } from './context/NoteContext';
 
 const Main = () => {
   return (
     <>
       <GlobalStyle />
       <ActiveContextProvider>
-        <EditorContextProvider>
-          <CategoriesContextProvider>
-            <Layout />
-          </CategoriesContextProvider>
-        </EditorContextProvider>
+        <NoteContextProvider>
+          <EditorContextProvider>
+            <CategoriesContextProvider>
+              <Layout />
+            </CategoriesContextProvider>
+          </EditorContextProvider>
+        </NoteContextProvider>
       </ActiveContextProvider>
     </>
   );

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { NoteContext } from '../context/NoteContext';
 import { ActiveContext } from '../context/ActiveContext';
 import { MainButton } from './Button.styles';
 import {
@@ -11,6 +12,12 @@ import {
 
 const NotesHeader = () => {
   const { activeCategory } = useContext(ActiveContext);
+  const { setAddNote } = useContext(NoteContext);
+
+  const onClick = () => {
+    setAddNote(true);
+  };
+
   return (
     <>
       <Container>
@@ -18,7 +25,9 @@ const NotesHeader = () => {
           <CategoryHeading>{activeCategory}</CategoryHeading>
           <NotesCount>Notes</NotesCount>
           <Search placeholder={`Search in ${activeCategory}`} />
-          <MainButton width={6}>Add Note</MainButton>
+          <MainButton width={6} onClick={onClick}>
+            Add Note
+          </MainButton>
         </Wrapper>
       </Container>
     </>

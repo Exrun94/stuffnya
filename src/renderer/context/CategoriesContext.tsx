@@ -9,8 +9,8 @@ type CategoryProps = {
 }[];
 
 type CategoriesContextType = {
-  categories: CategoryProps | null;
-  setCategories: React.Dispatch<React.SetStateAction<CategoryProps | null>>;
+  categories: CategoryProps;
+  setCategories: React.Dispatch<React.SetStateAction<CategoryProps>>;
 };
 
 type CategoriesContextProviderProps = {
@@ -23,7 +23,7 @@ export const CategoriesContext = createContext({} as CategoriesContextType);
 export const CategoriesContextProvider = ({
   children,
 }: CategoriesContextProviderProps) => {
-  const [categories, setCategories] = useState<CategoryProps | null>(null);
+  const [categories, setCategories] = useState<CategoryProps>([]);
   return (
     <CategoriesContext.Provider value={{ categories, setCategories }}>
       {children}
