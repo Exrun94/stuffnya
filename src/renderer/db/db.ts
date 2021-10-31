@@ -53,3 +53,12 @@ export async function getCategories() {
     return console.log(error);
   }
 }
+
+export async function destroyDB() {
+  try {
+    const result = await db.delete();
+    return console.log('DB deleted: ', result);
+  } catch (error) {
+    return console.log(error);
+  }
+}
