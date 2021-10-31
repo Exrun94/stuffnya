@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import moment from 'moment';
 import striptags from 'striptags';
-// import parse from 'html-react-parser';
 import { getNotes } from '../db/Notes';
 import { ActiveContext } from '../context/ActiveContext';
 import { NoteContext } from '../context/NoteContext';
@@ -33,10 +32,7 @@ const NoteComponent = () => {
   const [notes, setNotes] = useState<NoteData[]>([] as NoteData[]);
   const [active, setActive] = useState({} as NoteData);
   const { activeCategory } = useContext(ActiveContext);
-  // eslint-disable-next-line prettier/prettier
   const { setNote, setAddNote, noteDispatch } = useContext(NoteContext);
-
-  console.log('noteDispatch: ', noteDispatch);
 
   useEffect(() => {
     async function fetchData() {
@@ -49,9 +45,7 @@ const NoteComponent = () => {
   const onClick = (note: NoteData) => {
     setActive(note);
     setAddNote(false);
-    // const parsed = parse(note.data.value);
     setNote(note.data.value);
-    console.log(note.data.value);
   };
 
   return (

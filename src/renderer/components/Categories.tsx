@@ -55,7 +55,6 @@ const Categories = () => {
   const onClick = (el: DataProps): void => {
     setActive(el);
     setActiveCategory(el.data.name)
-    console.log(el);
   }
 
   return (
