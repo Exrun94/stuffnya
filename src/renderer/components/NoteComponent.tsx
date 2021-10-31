@@ -33,7 +33,10 @@ const NoteComponent = () => {
   const [notes, setNotes] = useState<NoteData[]>([] as NoteData[]);
   const [active, setActive] = useState({} as NoteData);
   const { activeCategory } = useContext(ActiveContext);
-  const { setNote, setAddNote } = useContext(NoteContext);
+  // eslint-disable-next-line prettier/prettier
+  const { setNote, setAddNote, noteDispatch } = useContext(NoteContext);
+
+  console.log('noteDispatch: ', noteDispatch);
 
   useEffect(() => {
     async function fetchData() {
@@ -41,7 +44,7 @@ const NoteComponent = () => {
       setNotes(result);
     }
     fetchData();
-  }, [activeCategory]);
+  }, [activeCategory, noteDispatch]);
 
   const onClick = (note: NoteData) => {
     setActive(note);

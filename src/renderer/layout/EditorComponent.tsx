@@ -25,7 +25,8 @@ const EditorComponent = () => {
   const [inputValue, setInputValue] = useState<string | null>(null);
   const [category, setCategory] = useState('');
   const [color, setColor] = useState('');
-  const { note, addNote } = useContext(NoteContext);
+  // eslint-disable-next-line prettier/prettier
+  const { note, addNote, noteDispatch, setNoteDispatch } = useContext(NoteContext);
 
   const onSave = async () => {
     const data = {
@@ -38,6 +39,7 @@ const EditorComponent = () => {
     };
 
     await addNotes(data);
+    setNoteDispatch(!noteDispatch);
   };
 
   const getOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
