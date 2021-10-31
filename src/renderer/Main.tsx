@@ -6,8 +6,10 @@ import Layout from './layout/Layout';
 import { EditorContextProvider } from './context/EditorContext';
 import { ActiveContextProvider } from './context/ActiveContext';
 import { NoteContextProvider } from './context/NoteContext';
+// import { destroyDB } from './db/db';
 
 const Main = () => {
+  // destroyDB();
   return (
     <>
       <GlobalStyle />
