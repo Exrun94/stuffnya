@@ -50,16 +50,16 @@ const EditorComponent = () => {
     setColor(option || '#fff');
   };
 
-  console.log(categories);
-
   return (
     <>
       <EditorContainer>
         <EditorWrapper>
           <BtnWrapper>
-            <MainButton width={6} onClick={onSave}>
-              Save
-            </MainButton>
+            {addNote && (
+              <MainButton width={6} onClick={onSave}>
+                Save
+              </MainButton>
+            )}
           </BtnWrapper>
           <Title
             placeholder="Enter Title"
