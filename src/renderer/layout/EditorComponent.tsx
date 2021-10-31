@@ -3,7 +3,7 @@
 import React, { useContext, useState } from 'react';
 import { CategoriesContext } from '../context/CategoriesContext';
 import { EditorContext } from '../context/EditorContext';
-import RichTextEditor from '../components/RichTextEditor';
+import RichTextEditor from '../components/editor/RichTextEditor';
 import {
   Select,
   Title,
@@ -14,7 +14,7 @@ import {
 } from './Editor.styles';
 import { EditorContainer, EditorWrapper } from './Layout.styles';
 import tag from '../../../assets/icons/tag.svg';
-import { MainButton } from '../components/Button.styles';
+import { MainButton } from '../components/global/Button.styles';
 import { addNotes } from '../db/Notes';
 import { NoteContext } from '../context/NoteContext';
 

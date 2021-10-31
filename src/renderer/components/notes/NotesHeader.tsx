@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import { NoteContext } from '../context/NoteContext';
-import { ActiveContext } from '../context/ActiveContext';
-import { MainButton } from './Button.styles';
+import { NoteContext } from '../../context/NoteContext';
+import { ActiveContext } from '../../context/ActiveContext';
+import { MainButton } from '../global/Button.styles';
 import {
   CategoryHeading,
   Wrapper,

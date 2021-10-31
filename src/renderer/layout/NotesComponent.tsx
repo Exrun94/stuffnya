@@ -1,6 +1,6 @@
 import React from 'react';
-import NoteComponent from '../components/NoteComponent';
-import NotesHeader from '../components/NotesHeader';
+import NoteComponent from '../components/notes/NoteComponent';
+import NotesHeader from '../components/notes/NotesHeader';
 import { NotesContainer } from './Layout.styles';
 
 const NotesComponent = () => {

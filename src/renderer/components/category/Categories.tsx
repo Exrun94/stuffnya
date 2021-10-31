@@ -2,14 +2,14 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect, useContext } from 'react';
 import { useStore, useStoreState } from 'react-context-hook';
-import folderIcon from '../../../assets/icons/folder.svg';
-import minusIcon from '../../../assets/icons/minus.svg';
-import plusIcon from '../../../assets/icons/plus.svg';
+import folderIcon from '../../../../assets/icons/folder.svg';
+import minusIcon from '../../../../assets/icons/minus.svg';
+import plusIcon from '../../../../assets/icons/plus.svg';
 import { Container, IconLeft, IconRight, ToggledWrapper, AddNew, ColorIndicator, CategoryList, CategoryName, } from './Categories.styles';
-import { getCategories as fetchCategories } from '../db/db';
-import { CategoriesContext } from '../context/CategoriesContext';
-import { ActiveContext } from '../context/ActiveContext';
-import DefaultCategories from '../db/DefaultCategories';
+import { getCategories as fetchCategories } from '../../db/db';
+import { CategoriesContext } from '../../context/CategoriesContext';
+import { ActiveContext } from '../../context/ActiveContext';
+import DefaultCategories from '../../db/DefaultCategories';
 
 let icon = minusIcon;
 

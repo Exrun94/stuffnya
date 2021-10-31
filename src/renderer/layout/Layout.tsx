@@ -10,7 +10,7 @@ import EditorComponent from './EditorComponent';
 import NotesComponent from './NotesComponent';
 import ClientComponent from './ClientComponent';
 import { NoteContext } from '../context/NoteContext';
-import RichText from '../components/RichText';
+import RichText from '../components/editor/RichText';
 
 const Layout = () => {
   const store = useStoreState();

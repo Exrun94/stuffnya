@@ -8,7 +8,7 @@ import {
   CloseBtn,
   Input,
 } from './MotionFrameComponent.styles';
-import { MainButton } from './Button.styles';
+import { MainButton } from './global/Button.styles';
 import { addCategory } from '../db/db';
 
 const dropIn = {

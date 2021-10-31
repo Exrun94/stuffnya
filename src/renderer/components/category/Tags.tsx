@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import folderIcon from '../../../assets/icons/folder.svg';
-import minusIcon from '../../../assets/icons/minus.svg';
-import plusIcon from '../../../assets/icons/plus.svg';
+import folderIcon from '../../../../assets/icons/folder.svg';
+import minusIcon from '../../../../assets/icons/minus.svg';
+import plusIcon from '../../../../assets/icons/plus.svg';
 import {
   Container,
   IconLeft,

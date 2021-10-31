@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
 import moment from 'moment';
 import striptags from 'striptags';
-import { getNotes } from '../db/Notes';
-import { ActiveContext } from '../context/ActiveContext';
-import { NoteContext } from '../context/NoteContext';
+import { getNotes } from '../../db/Notes';
+import { ActiveContext } from '../../context/ActiveContext';
+import { NoteContext } from '../../context/NoteContext';
 import {
   Container,
   Category,

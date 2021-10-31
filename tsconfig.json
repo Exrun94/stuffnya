@@ -29,6 +29,6 @@
     "@node_modules/react-light-notifications": ["types/react-light-notifications.d.ts"],
     "src/renderer/quill.global.css": ["src/renderer/quill.global.css"]
   },
-  "include": ["src/**/*", "types", "assets/icons", "assets/assets.d.ts", "src/renderer/types/index.d.ts"],
+  "include": ["src/**/*", "types", "assets/icons", "assets/assets.d.ts", "src/renderer/types/index.d.ts", "jsconfig.json"],
   "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"]
 }
