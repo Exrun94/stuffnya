@@ -1,5 +1,5 @@
 /* eslint-disable react/no-children-prop */
-import React from 'react';
+import React, { useContext } from 'react';
 import { useStoreState } from 'react-context-hook';
 import MotionFrameComponent from '../components/MotionFrameComponent';
 import { Container } from './Layout.styles';
@@ -9,9 +9,12 @@ import CategoriesComponent from './CategoriesComponent';
 import EditorComponent from './EditorComponent';
 import NotesComponent from './NotesComponent';
 import ClientComponent from './ClientComponent';
+import { NoteContext } from '../context/NoteContext';
+import RichText from '../components/RichText';
 
 const Layout = () => {
   const store = useStoreState();
+  const { addNote, note } = useContext(NoteContext);
 
   return (
     <>
@@ -21,7 +24,8 @@ const Layout = () => {
         <SideNavComponent />
         <CategoriesComponent />
         <NotesComponent />
-        <EditorComponent />
+        {addNote && <EditorComponent />}
+        {!addNote && <RichText note={note} />}
         <ClientComponent />
       </Container>
     </>
