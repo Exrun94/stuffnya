@@ -62,3 +62,18 @@ export async function destroyDB() {
     return console.log(error);
   }
 }
+
+// declare global {
+//   interface Window {
+//     destroyDB: any;
+//   }
+// }
+
+// window.destroyDB = (async function (window, document) {
+//   try {
+//     const result = await db.delete();
+//     return console.log('DB deleted: ', result);
+//   } catch (error) {
+//     return console.log(error);
+//   }
+// })(window, document);

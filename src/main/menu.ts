@@ -6,6 +6,12 @@ import {
   MenuItemConstructorOptions,
 } from 'electron';
 
+declare global {
+  interface Window {
+    destroyDB: any;
+  }
+}
+
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
   selector?: string;
   submenu?: DarwinMenuItemConstructorOptions[] | Menu;
@@ -49,11 +55,29 @@ export default class MenuBuilder {
           },
         },
         {
-         label: 'Add new',
-         click: () => {
-           //TODO - Add new category / update / delete and more
-         }
-        }
+          label: 'Hard Reload',
+          click: () => {
+            this.mainWindow.webContents.reloadIgnoringCache();
+          },
+        },
+        {
+          label: 'Copy',
+          click: () => {
+            this.mainWindow.webContents.copy();
+          },
+        },
+        {
+          label: 'Paste',
+          click: () => {
+            this.mainWindow.webContents.paste();
+          },
+        },
+        {
+          label: 'Delete Database',
+          click: () => {
+            // window.destroyDB();
+          },
+        },
       ]).popup({ window: this.mainWindow });
     });
   }
@@ -114,6 +138,13 @@ export default class MenuBuilder {
           accelerator: 'Command+R',
           click: () => {
             this.mainWindow.webContents.reload();
+          },
+        },
+        {
+          label: 'Hard Reload',
+          accelerator: 'Command+Shift+R',
+          click: () => {
+            this.mainWindow.webContents.reloadIgnoringCache();
           },
         },
         {

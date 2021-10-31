@@ -2,6 +2,7 @@
   "name": "stuffnyata",
   "productName": "Stuffnyata",
   "description": "Electron-React based app build for SG support",
+  "version": "0.1.0",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
     "build:main": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.main.prod.ts",

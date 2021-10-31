@@ -1,9 +1,6 @@
-import React from 'react';
-import { StyledReactQuill } from './RichTextEditor.styles';
-
-type Props = {
-  note: string;
-};
+import React, { useContext } from 'react';
+import { NoteContext } from '../../context/NoteContext';
+import { StyledReactQuill } from './Editor.styles';
 
 const modules = {
   toolbar: false,
@@ -13,8 +10,12 @@ const modules = {
   },
 };
 
-function RichText({ note }: Props) {
-  return <StyledReactQuill value={note} readOnly modules={modules} />;
+function RichText() {
+  const { note } = useContext(NoteContext);
+
+  return (
+    <StyledReactQuill value={note.data?.value} readOnly modules={modules} />
+  );
 }
 
 export default RichText;

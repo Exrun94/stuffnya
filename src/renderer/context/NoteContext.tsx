@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { INote } from '../interfaces';
 
 /*
 This context  provides the following state functionality
@@ -8,8 +9,8 @@ This context  provides the following state functionality
 */
 
 type NoteContextType = {
-  note: string;
-  setNote: React.Dispatch<React.SetStateAction<string>>;
+  note: INote;
+  setNote: React.Dispatch<React.SetStateAction<INote>>;
   addNote: boolean;
   setAddNote: React.Dispatch<React.SetStateAction<boolean>>;
   noteDispatch: boolean;
@@ -24,7 +25,7 @@ type NoteContextProviderProps = {
 export const NoteContext = createContext({} as NoteContextType);
 
 export const NoteContextProvider = ({ children }: NoteContextProviderProps) => {
-  const [note, setNote] = useState<string>('');
+  const [note, setNote] = useState<INote>({} as INote);
   const [addNote, setAddNote] = useState(false);
   const [noteDispatch, setNoteDispatch] = useState(false);
   return (

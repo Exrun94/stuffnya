@@ -4,6 +4,7 @@ import striptags from 'striptags';
 import { getNotes } from '../../db/Notes';
 import { ActiveContext } from '../../context/ActiveContext';
 import { NoteContext } from '../../context/NoteContext';
+import { INote } from '../../interfaces';
 import {
   Container,
   Category,
@@ -16,21 +17,9 @@ import {
   TagsWrapper,
 } from './NoteComponent.styles';
 
-interface NoteData {
-  key: string;
-  data: {
-    value: string;
-    date: number;
-    tags: string[];
-    name: string;
-    color: string;
-    category: string;
-  };
-}
-
 const NoteComponent = () => {
-  const [notes, setNotes] = useState<NoteData[]>([] as NoteData[]);
-  const [active, setActive] = useState({} as NoteData);
+  const [notes, setNotes] = useState<INote[]>([] as INote[]);
+  const [active, setActive] = useState({} as INote);
   const { activeCategory } = useContext(ActiveContext);
   const { setNote, setAddNote, noteDispatch } = useContext(NoteContext);
 
@@ -42,10 +31,10 @@ const NoteComponent = () => {
     fetchData();
   }, [activeCategory, noteDispatch]);
 
-  const onClick = (note: NoteData) => {
+  const onClick = (note: INote) => {
     setActive(note);
     setAddNote(false);
-    setNote(note.data.value);
+    setNote(note);
   };
 
   return (
