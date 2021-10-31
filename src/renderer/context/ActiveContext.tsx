@@ -15,7 +15,7 @@ export const ActiveContext = createContext({} as ActiveContextType);
 export const ActiveContextProvider = ({
   children,
 }: ActiveContextProviderProps) => {
-  const [activeCategory, setActiveCategory] = useState<string>('');
+  const [activeCategory, setActiveCategory] = useState<string>('ALL');
   return (
     <ActiveContext.Provider value={{ activeCategory, setActiveCategory }}>
       {children}
