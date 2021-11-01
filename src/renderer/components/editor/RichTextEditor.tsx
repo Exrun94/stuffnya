@@ -8,24 +8,16 @@ import tag from '../../../../assets/icons/tag.svg';
 import { MainButton } from '../global/Button.styles';
 import { addNotes } from '../../db/Notes';
 import { NoteContext } from '../../context/NoteContext';
-import {
-  StyledReactQuill,
-  Select,
-  Title,
-  Option,
-  TagIcon,
-  DivWrapper,
-  BtnWrapper,
-} from './Editor.styles';
+import { StyledReactQuill, Select, Title, Option, TagIcon,DivWrapper, BtnWrapper, } from './Editor.styles';
 
 function RichTextEditor() {
   const { editor, setEditor } = useContext(EditorContext);
-
   const { categories } = useContext(CategoriesContext);
-  const [inputValue, setInputValue] = useState<string | null>(null);
+  const { noteDispatch, setNoteDispatch } = useContext(NoteContext);
+
+  const [inputValue, setInputValue] = useState<string>('');
   const [category, setCategory] = useState('');
   const [color, setColor] = useState('');
-  const { noteDispatch, setNoteDispatch } = useContext(NoteContext);
 
   const onSave = async () => {
     const data = {
@@ -39,6 +31,8 @@ function RichTextEditor() {
 
     await addNotes(data);
     setNoteDispatch(!noteDispatch);
+    setEditor('');
+    setInputValue('');
   };
 
   const getOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -58,6 +52,7 @@ function RichTextEditor() {
       </BtnWrapper>
       <Title
         placeholder="Enter Title"
+        value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
       <DivWrapper>

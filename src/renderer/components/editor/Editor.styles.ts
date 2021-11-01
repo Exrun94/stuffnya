@@ -50,7 +50,25 @@ export const Title = styled.input`
   font-size: 32px;
   font-weight: normal;
   font-weight: 400;
-  line-height: 16px;
+  margin-bottom: 1rem;
+  color: white;
+  outline: none;
+  background: transparent;
+  border: none;
+  word-wrap: break-word;
+  word-break: break-all;
+  height: 80px;
+
+  &::placeholder {
+    color: white;
+  }
+`;
+
+export const TitleBar = styled.h3`
+  font-family: 'Roboto', sans-serif;
+  font-size: 32px;
+  font-weight: normal;
+  font-weight: 400;
   margin-bottom: 1rem;
   color: white;
   outline: none;
@@ -92,4 +110,13 @@ export const BtnWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   margin: 1rem;
+
+  > * {
+    margin-left: 5px;
+  }
+`;
+
+export const Separator = styled.div`
+  border-bottom: 1px solid var(--primary-400);
+  margin-top: 8px;
 `;

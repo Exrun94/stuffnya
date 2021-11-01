@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import Localbase from 'localbase';
+import { INote } from '../interfaces';
 
 const db = new Localbase('db');
 db.config.debug = true;
@@ -13,10 +14,10 @@ interface NoteData {
   color: string;
 }
 
-async function addAll(data: NoteData) {
+async function addAll(data: NoteData, key: string) {
   try {
     // eslint-disable-next-line @typescript-eslint/dot-notation
-    await db.collection('ALL').add(data);
+    await db.collection('ALL').add(data, key);
   } catch (error) {
     console.log('error: ', error);
   }
@@ -34,8 +35,8 @@ async function addAll(data: NoteData) {
 export async function addNotes(data: NoteData) {
   try {
     // eslint-disable-next-line @typescript-eslint/dot-notation
-    await db.collection(data.category).add(data);
-    addAll(data);
+    let result = await db.collection(data.category).add(data);
+    addAll(data, result.data.key);
   } catch (error) {
     console.log('error: ', error);
   }
@@ -53,12 +54,26 @@ export async function getNotes(category: string) {
   }
 }
 
-// might not need it, as I can save to context from the selected category obj
-export async function getOneNote(key: string, category: string) {
+export async function UpdateNote(data: INote) {
   try {
-    const note = await db.collection(category).get({ key });
-    return note;
+    const result = await db.collection(data.data.category)
+    .doc(data.key)
+    .update({ data })
+    return result
   } catch (error) {
     return console.log('error: ', error);
+  }
+}
+
+export async function deleteNote(category: string, key: string) {
+  try {
+    await db.collection(category)
+    .doc(key)
+    .delete()
+    await db.collection('ALL')
+    .doc(key)
+    .delete()
+  } catch (error) {
+    console.log(error)
   }
 }

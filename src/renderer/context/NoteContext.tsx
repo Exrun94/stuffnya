@@ -26,7 +26,7 @@ export const NoteContext = createContext({} as NoteContextType);
 
 export const NoteContextProvider = ({ children }: NoteContextProviderProps) => {
   const [note, setNote] = useState<INote>({} as INote);
-  const [addNote, setAddNote] = useState(false);
+  const [addNote, setAddNote] = useState(true);
   const [noteDispatch, setNoteDispatch] = useState(false);
   return (
     <NoteContext.Provider

@@ -32,6 +32,14 @@ export const modules = {
   syntax: true,
 };
 
+export const modules2 = {
+  toolbar: false,
+  syntax: true,
+  clipboard: {
+    matchVisual: false,
+  },
+};
+
 export const textFormats = [
   'font',
   'header',

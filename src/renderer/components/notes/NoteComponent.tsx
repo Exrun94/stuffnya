@@ -26,19 +26,25 @@ const NoteComponent = () => {
   useEffect(() => {
     async function fetchData() {
       const result = await getNotes(activeCategory || 'ALL');
+      console.log('RESULT: ', result);
+      console.log('Active category: ', activeCategory);
       setNotes(result);
     }
     fetchData();
+    console.log('dispatched: ', noteDispatch);
+    console.log('useEffectNotes: ', notes);
   }, [activeCategory, noteDispatch]);
 
   const onClick = (note: INote) => {
     setActive(note);
     setAddNote(false);
     setNote(note);
+    console.log('note; ', note);
   };
 
   return (
     <>
+      {console.log('in Return Notes: ', notes)}
       {notes.map((note) => {
         return (
           <ColorIndicator
