@@ -2,17 +2,17 @@ import React, { useContext, useState, useRef } from 'react';
 import { NoteContext } from '../../context/NoteContext';
 import tag from '../../../../assets/icons/tag.svg';
 import { MainButton } from '../global/Button.styles';
-import { textFormats, modules, modules2 } from './editor.config';
+import { textFormats, modules, modulesReadOnly } from './editor.config';
 import { BtnWrapper, StyledReactQuill, TagIcon, TitleBar, Separator , Title, Select, DivWrapper, Option} from './Editor.styles';
 import { CategoriesContext } from '../../context/CategoriesContext';
 import { INote } from '../../interfaces';
 import { deleteNote, UpdateNote } from '../../db/Notes';
 
 function RichText() {
-  const { note, noteDispatch, setNoteDispatch } = useContext(NoteContext);
+  const { note, noteDispatch, SetNoteDispatch } = useContext(NoteContext);
   const { categories } = useContext(CategoriesContext);
   const [ editMode, setEditMode ] = useState(false);
-  const [ module, setModule ] = useState<any>(modules2)
+  const [ module, setModule ] = useState<any>(modulesReadOnly)
   const [inputValue, setInputValue] = useState<string>('');
   const [category, setCategory] = useState('');
   const [color, setColor] = useState('');
@@ -28,7 +28,7 @@ function RichText() {
 
   const onCancel = () => {
     setEditMode(false);
-    setModule(modules2)
+    setModule(modulesReadOnly)
   }
 
   const onSave = () => {
@@ -51,12 +51,12 @@ function RichText() {
     UpdateNote(data);
 
     setEditMode(false);
-    setModule(modules2)
+    setModule(modulesReadOnly)
   }
 
   const onDelete = async() => {
     await deleteNote(note.data.category, note.key);
-    setNoteDispatch(!noteDispatch);
+    SetNoteDispatch(!noteDispatch);
     setEditMode(true);
     setModule(modules)
     note.data.value = '';

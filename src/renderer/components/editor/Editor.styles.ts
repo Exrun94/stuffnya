@@ -118,5 +118,5 @@ export const BtnWrapper = styled.div`
 
 export const Separator = styled.div`
   border-bottom: 1px solid var(--primary-400);
-  margin-top: 8px;
+  margin-top: 40px;
 `;

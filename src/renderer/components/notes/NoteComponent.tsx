@@ -16,35 +16,39 @@ import {
   Tags,
   TagsWrapper,
 } from './NoteComponent.styles';
+// Testing custom hooks
+import { useNote } from '../../hooks/useNote';
+import { EditorContext } from '../../context/EditorContext';
 
 const NoteComponent = () => {
   const [notes, setNotes] = useState<INote[]>([] as INote[]);
-  const [active, setActive] = useState({} as INote);
   const { activeCategory } = useContext(ActiveContext);
-  const { setNote, setAddNote, noteDispatch } = useContext(NoteContext);
+  const { SetEditor, SetReadOnly, SetInputValue, SetCategory } = useContext(EditorContext);
+  const { SetNote, SetAddNote, noteDispatch } = useContext(NoteContext);
+
+  // Testing custom hooks
+  const { onSelected, selectedNote } = useNote();
 
   useEffect(() => {
     async function fetchData() {
       const result = await getNotes(activeCategory || 'ALL');
-      console.log('RESULT: ', result);
-      console.log('Active category: ', activeCategory);
       setNotes(result);
     }
     fetchData();
-    console.log('dispatched: ', noteDispatch);
-    console.log('useEffectNotes: ', notes);
   }, [activeCategory, noteDispatch]);
 
   const onClick = (note: INote) => {
-    setActive(note);
-    setAddNote(false);
-    setNote(note);
-    console.log('note; ', note);
+    SetAddNote(false);
+    SetNote(note);
+    onSelected(note)
+    SetReadOnly(true);
+    SetEditor(note.data.value);
+    SetInputValue(note.data.name);
+    SetCategory(note.data.category);
   };
 
   return (
     <>
-      {console.log('in Return Notes: ', notes)}
       {notes.map((note) => {
         return (
           <ColorIndicator
@@ -52,7 +56,7 @@ const NoteComponent = () => {
             color={note.data.color}
             onClick={() => onClick(note)}
           >
-            <Container className={note === active ? 'active' : ''}>
+            <Container className={note === selectedNote ? 'active' : ''}>
               <Wrapper>
                 <Category>{note.data.category}</Category>
                 <Date>{moment(note.data.date).format('DD/MM/YY HH:mm')}</Date>

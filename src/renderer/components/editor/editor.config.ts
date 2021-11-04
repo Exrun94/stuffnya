@@ -32,7 +32,7 @@ export const modules = {
   syntax: true,
 };
 
-export const modules2 = {
+export const modulesReadOnly = {
   toolbar: false,
   syntax: true,
   clipboard: {

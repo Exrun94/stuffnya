@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NoteContext } from '../../context/NoteContext';
+import { EditorContext } from '../../context/EditorContext';
 import { ActiveContext } from '../../context/ActiveContext';
 import { MainButton } from '../global/Button.styles';
 import {
@@ -12,10 +12,12 @@ import {
 
 const NotesHeader = () => {
   const { activeCategory } = useContext(ActiveContext);
-  const { setAddNote } = useContext(NoteContext);
+  const { SetReadOnly, SetEditor, SetInputValue } = useContext(EditorContext);
 
   const onClick = () => {
-    setAddNote(true);
+    SetReadOnly(false);
+    SetEditor('');
+    SetInputValue('');
   };
 
   return (

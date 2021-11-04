@@ -10,11 +10,13 @@ This context  provides the following state functionality
 
 type NoteContextType = {
   note: INote;
-  setNote: React.Dispatch<React.SetStateAction<INote>>;
+  SetNote: React.Dispatch<React.SetStateAction<INote>>;
   addNote: boolean;
-  setAddNote: React.Dispatch<React.SetStateAction<boolean>>;
+  SetAddNote: React.Dispatch<React.SetStateAction<boolean>>;
   noteDispatch: boolean;
-  setNoteDispatch: React.Dispatch<React.SetStateAction<boolean>>;
+  SetNoteDispatch: React.Dispatch<React.SetStateAction<boolean>>;
+  readOnly: boolean;
+  SetReadOnly: React.Dispatch<React.SetStateAction<boolean>>
 };
 
 type NoteContextProviderProps = {
@@ -25,18 +27,21 @@ type NoteContextProviderProps = {
 export const NoteContext = createContext({} as NoteContextType);
 
 export const NoteContextProvider = ({ children }: NoteContextProviderProps) => {
-  const [note, setNote] = useState<INote>({} as INote);
-  const [addNote, setAddNote] = useState(true);
-  const [noteDispatch, setNoteDispatch] = useState(false);
+  const [note, SetNote] = useState<INote>({} as INote);
+  const [addNote, SetAddNote] = useState(true);
+  const [noteDispatch, SetNoteDispatch] = useState(false);
+  const [readOnly, SetReadOnly] = useState(false)
   return (
     <NoteContext.Provider
       value={{
         note,
-        setNote,
+        SetNote,
         addNote,
-        setAddNote,
+        SetAddNote,
         noteDispatch,
-        setNoteDispatch,
+        SetNoteDispatch,
+        readOnly,
+        SetReadOnly,
       }}
     >
       {children}
