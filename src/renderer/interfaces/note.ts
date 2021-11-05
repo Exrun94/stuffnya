@@ -9,3 +9,4 @@ export interface INote {
     category: string;
   };
 }
+

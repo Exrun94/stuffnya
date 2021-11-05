@@ -1,20 +1,11 @@
 import Localbase from 'localbase';
 
 const db = new Localbase('db');
-db.config.debug = true;
+db.config.debug = false;
 
 interface CategoriesData {
   name: string;
   color: string;
-}
-
-interface Reference {
-  name: string;
-}
-
-interface UpdatedReference {
-  name?: string;
-  color?: string;
 }
 
 export async function addCategory(data: CategoriesData) {
@@ -24,21 +15,6 @@ export async function addCategory(data: CategoriesData) {
     console.log(result);
   } catch (error) {
     console.log('error: ', error);
-  }
-}
-
-export async function updateCategory(
-  reference: Reference,
-  updatedReference: UpdatedReference
-) {
-  try {
-    const result = await db
-      .collection('categories')
-      .doc(reference)
-      .update(updatedReference);
-    return result;
-  } catch (error) {
-    return console.log('error: ', error);
   }
 }
 

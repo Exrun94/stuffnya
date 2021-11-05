@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import moment from 'moment';
 import striptags from 'striptags';
 import { getNotes } from '../../db/Notes';
@@ -21,10 +21,9 @@ import { useNote } from '../../hooks/useNote';
 import { EditorContext } from '../../context/EditorContext';
 
 const NoteComponent = () => {
-  const [notes, setNotes] = useState<INote[]>([] as INote[]);
   const { activeCategory } = useContext(ActiveContext);
   const { SetEditor, SetReadOnly, SetInputValue, SetCategory } = useContext(EditorContext);
-  const { SetNote, SetAddNote, noteDispatch } = useContext(NoteContext);
+  const { SetNote, SetAddNote, noteDispatch, notes, setNotes, SetNotesLength} = useContext(NoteContext);
 
   // Testing custom hooks
   const { onSelected, selectedNote } = useNote();
@@ -33,6 +32,7 @@ const NoteComponent = () => {
     async function fetchData() {
       const result = await getNotes(activeCategory || 'ALL');
       setNotes(result);
+      SetNotesLength(notes.length);
     }
     fetchData();
   }, [activeCategory, noteDispatch]);

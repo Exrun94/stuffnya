@@ -10,6 +10,7 @@ import { getCategories as fetchCategories } from '../../db/db';
 import { CategoriesContext } from '../../context/CategoriesContext';
 import { ActiveContext } from '../../context/ActiveContext';
 import DefaultCategories from '../../db/DefaultCategories';
+import { NoteContext } from '../../context/NoteContext';
 
 let icon = minusIcon;
 
@@ -26,9 +27,10 @@ const Categories = () => {
   const [active, setActive] = useState({} as DataProps);
   const [state, setState] = useStore('state', false);
   const [data, setData] = useState<DataProps[]>([]);
-  const {setActiveCategory} = useContext(ActiveContext);
+  const { setActiveCategory } = useContext(ActiveContext);
   const storeState = useStoreState();
   const categoriesContext = useContext(CategoriesContext);
+  const { notesLength } = useContext(NoteContext)
 
 
   useEffect(() => {
@@ -39,6 +41,7 @@ const Categories = () => {
       categoriesContext.setCategories(result);
     }
     fetchData();
+    console.log('note: ', notesLength);
 
   }, [storeState.alert]);
 
@@ -55,6 +58,7 @@ const Categories = () => {
   const onClick = (el: DataProps): void => {
     setActive(el);
     setActiveCategory(el.data.name)
+
   }
 
   return (

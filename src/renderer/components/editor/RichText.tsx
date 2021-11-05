@@ -12,7 +12,7 @@ function RichText() {
   const { note, noteDispatch, SetNoteDispatch } = useContext(NoteContext);
   const { categories } = useContext(CategoriesContext);
   const [ editMode, setEditMode ] = useState(false);
-  const [ module, setModule ] = useState<any>(modulesReadOnly)
+  const [ module, setModule ] = useState<{}>(modulesReadOnly)
   const [inputValue, setInputValue] = useState<string>('');
   const [category, setCategory] = useState('');
   const [color, setColor] = useState('');
@@ -45,11 +45,7 @@ function RichText() {
       }
     }
 
-    console.log('NEW: ', data);
-    console.log('OLD: ', note);
-
     UpdateNote(data);
-
     setEditMode(false);
     setModule(modulesReadOnly)
   }

@@ -75,7 +75,7 @@ function RichTextEditor() {
         {readOnly && <MainButton width={6} onClick={onEdit}>
           Edit
         </MainButton>}
-        {!readOnly && <MainButton width={6} onClick={onUpdate}>
+        {!readOnly && updateMode && <MainButton width={6} onClick={onUpdate}>
           Update
         </MainButton>}
         {!readOnly && <MainButton width={6} onClick={onCancel}>

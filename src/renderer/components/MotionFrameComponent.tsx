@@ -36,15 +36,15 @@ const MotionFrameComponent = () => {
   const [state, setState] = useStore('state', false);
   const [alert, setAlert] = useStore('alert', false);
   const [color, setColor] = useColor('hex', '#fff');
-  const [input, setInput] = useState('');
+  const [categoryName, setCategoryName] = useState('');
 
   const onClick = () => {
-    if (input === '') {
+    if (categoryName === '') {
       return;
     }
 
-    addCategory({ name: input, color: color.hex });
-    setInput('');
+    addCategory({ name: categoryName, color: color.hex });
+    setCategoryName('');
     setState(!state);
     setAlert(!alert);
   };
@@ -63,8 +63,8 @@ const MotionFrameComponent = () => {
             <Input
               type="text"
               placeholder="Category Name..."
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
+              value={categoryName}
+              onChange={(e) => setCategoryName(e.target.value)}
             />
             <ColorPicker
               width={450}

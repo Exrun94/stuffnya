@@ -1,7 +1,7 @@
 import Localbase from 'localbase';
 
 const db = new Localbase('db');
-db.config.debug = true;
+db.config.debug = false;
 
 async function DefaultCategories(): Promise<void> {
   const checkCategories = await db.collection('categories').get();

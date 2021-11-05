@@ -4,7 +4,7 @@ import { dispatchNotification } from '../helpers/notifications';
 import { INote } from '../interfaces';
 
 const db = new Localbase('db');
-db.config.debug = true;
+db.config.debug = false;
 
 interface NoteData {
   value: string;
@@ -68,11 +68,11 @@ export async function UpdateNote(data: INote) {
   } catch (error) {
     return console.log('error: ', error);
   }
-}
 
+}
 export async function deleteNote(category: string, key: string) {
   try {
-    await db.collection(category).doc('key').delete();
+    await db.collection(category).doc(key).delete();
     await db.collection('ALL').doc(key).delete();
     return dispatchSuccess('Deleted successfully! 💪')
   } catch (error) {
