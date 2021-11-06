@@ -1,41 +1,20 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import moment from 'moment';
 import striptags from 'striptags';
-import { getNotes } from '../../db/Notes';
-import { ActiveContext } from '../../context/ActiveContext';
 import { NoteContext } from '../../context/NoteContext';
 import { INote } from '../../interfaces';
-import {
-  Container,
-  Category,
-  Date,
-  Wrapper,
-  Name,
-  Content,
-  ColorIndicator,
-  Tags,
-  TagsWrapper,
-} from './NoteComponent.styles';
-// Testing custom hooks
+import { Container, Category, Date, Wrapper, Name, Content, ColorIndicator, Tags, TagsWrapper } from './NoteComponent.styles';
 import { useNote } from '../../hooks/useNote';
 import { EditorContext } from '../../context/EditorContext';
+import { useFetchNotes } from '../../hooks/useFetchNotes';
 
 const NoteComponent = () => {
-  const { activeCategory } = useContext(ActiveContext);
   const { SetEditor, SetReadOnly, SetInputValue, SetCategory } = useContext(EditorContext);
-  const { SetNote, SetAddNote, noteDispatch, notes, setNotes, SetNotesLength} = useContext(NoteContext);
+  const { SetNote, SetAddNote, } = useContext(NoteContext);
 
   // Testing custom hooks
   const { onSelected, selectedNote } = useNote();
-
-  useEffect(() => {
-    async function fetchData() {
-      const result = await getNotes(activeCategory || 'ALL');
-      setNotes(result);
-      SetNotesLength(notes.length);
-    }
-    fetchData();
-  }, [activeCategory, noteDispatch]);
+  const {notes} = useFetchNotes();
 
   const onClick = (note: INote) => {
     SetAddNote(false);
@@ -46,6 +25,7 @@ const NoteComponent = () => {
     SetInputValue(note.data.name);
     SetCategory(note.data.category);
   };
+
 
   return (
     <>

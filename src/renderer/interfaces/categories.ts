@@ -1,7 +1,8 @@
-import { INote } from './note';
-
 export interface ICategories {
-  categoryName: string;
-  categoryColor: string;
-  notes: [INote] | []
+  data: {
+    name: string;
+    color: string;
+  };
+  key: string;
 }
+

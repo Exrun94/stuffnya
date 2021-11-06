@@ -18,7 +18,7 @@ export async function addCategory(data: CategoriesData) {
   }
 }
 
-export async function getCategories() {
+export async function fetchCategories() {
   try {
     const result = await db
       .collection('categories')

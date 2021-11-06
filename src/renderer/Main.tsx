@@ -8,23 +8,27 @@ import { ActiveContextProvider } from './context/ActiveContext';
 import { NoteContextProvider } from './context/NoteContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/toast.global.css';
+import { GlobalContextProvider } from './context/GlobalContext';
 // import { destroyDB } from './db/db';
 
 const Main = () => {
   // destroyDB();
+
   return (
     <>
       <GlobalStyle />
-      <ActiveContextProvider>
-        <NoteContextProvider>
-          <EditorContextProvider>
-            <CategoriesContextProvider>
-              <ToastContainer />
-              <Layout />
-            </CategoriesContextProvider>
-          </EditorContextProvider>
-        </NoteContextProvider>
-      </ActiveContextProvider>
+      <GlobalContextProvider>
+        <ActiveContextProvider>
+          <NoteContextProvider>
+            <EditorContextProvider>
+              <CategoriesContextProvider>
+                <ToastContainer />
+                <Layout />
+              </CategoriesContextProvider>
+            </EditorContextProvider>
+          </NoteContextProvider>
+        </ActiveContextProvider>
+      </GlobalContextProvider>
     </>
   );
 };

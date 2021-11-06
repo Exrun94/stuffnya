@@ -81,3 +81,19 @@ export async function deleteNote(category: string, key: string) {
   }
 
 }
+
+
+
+
+// New way
+export async function fetchNotes(category: string) {
+  try {
+    const categories = await db
+      .collection(category)
+      .orderBy('date', 'desc')
+      .get({ keys: true });
+    return categories;
+  } catch (error) {
+    return dispatchError('Failed to fetch', '🤷‍♂️')
+  }
+}
