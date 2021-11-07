@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { fetchNotes } from "../db/Notes";
+import { fetchNotes } from "../db/db";
 import { GlobalContext } from '../context/GlobalContext';
 import { INote } from "../interfaces";
 
 export const useFetchNotes = () => {
-  const { selectedCategory } = useContext(GlobalContext);
+  const { selectedCategory, newNoteAddedTrigger } = useContext(GlobalContext);
   const [notes, setNotes] = useState<INote[]>([]);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export const useFetchNotes = () => {
       setNotes(result);
     }
     fetchData();
-  }, [selectedCategory]);
+  }, [selectedCategory, newNoteAddedTrigger]);
 
   return {notes};
 

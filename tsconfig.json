@@ -25,9 +25,11 @@
     "typeRoots": ["./types", "./node_modules/@types"]
   },
   "paths": {
-    "@node_modules/localbase": ["types/localbase.d.ts"],
+    "@node_modules/localbase": ["src/renderer/types/index.d.ts"],
     "@node_modules/react-light-notifications": ["types/react-light-notifications.d.ts"],
-    "src/renderer/quill.global.css": ["src/renderer/quill.global.css"]
+    "src/renderer/quill.global.css": ["src/renderer/quill.global.css"],
+    "@node_modules/react-quill/dist/quill.global.css": ["src/renderer/types/quill.d.ts"]
+
   },
   "include": ["src/**/*", "types", "assets/icons", "assets/assets.d.ts", "src/renderer/types/index.d.ts", "jsconfig.json"],
   "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"]

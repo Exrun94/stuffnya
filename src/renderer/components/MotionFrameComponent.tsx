@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useStore } from 'react-context-hook';
 import { ColorPicker, useColor } from 'react-color-palette';
 import {
@@ -10,6 +10,7 @@ import {
 } from './MotionFrameComponent.styles';
 import { MainButton } from './global/Button.styles';
 import { addCategory } from '../db/db';
+import { GlobalContext } from '../context/GlobalContext';
 
 const dropIn = {
   hidden: {
@@ -34,19 +35,18 @@ const dropIn = {
 
 const MotionFrameComponent = () => {
   const [state, setState] = useStore('state', false);
-  const [alert, setAlert] = useStore('alert', false);
   const [color, setColor] = useColor('hex', '#fff');
   const [categoryName, setCategoryName] = useState('');
+  const {newCategoryAddedTrigger, setNewCategoryAddedTrigger} = useContext(GlobalContext);
 
   const onClick = () => {
     if (categoryName === '') {
       return;
     }
-
     addCategory({ name: categoryName, color: color.hex });
     setCategoryName('');
     setState(!state);
-    setAlert(!alert);
+    setNewCategoryAddedTrigger(!newCategoryAddedTrigger)
   };
 
   return (

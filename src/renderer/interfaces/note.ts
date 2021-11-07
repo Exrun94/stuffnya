@@ -10,3 +10,12 @@ export interface INote {
   };
 }
 
+
+export interface INoteData {
+  value: string;
+  date: number;
+  tags: string[];
+  name: string;
+  category: string;
+  color: string;
+}

@@ -3,27 +3,22 @@ import moment from 'moment';
 import striptags from 'striptags';
 import { NoteContext } from '../../context/NoteContext';
 import { INote } from '../../interfaces';
-import { Container, Category, Date, Wrapper, Name, Content, ColorIndicator, Tags, TagsWrapper } from './NoteComponent.styles';
-import { useNote } from '../../hooks/useNote';
-import { EditorContext } from '../../context/EditorContext';
 import { useFetchNotes } from '../../hooks/useFetchNotes';
+import { GlobalContext } from '../../context/GlobalContext';
+import { Container, Category, Date, Wrapper, Name, Content, ColorIndicator, Tags, TagsWrapper } from './NoteComponent.styles';
 
 const NoteComponent = () => {
-  const { SetEditor, SetReadOnly, SetInputValue, SetCategory } = useContext(EditorContext);
-  const { SetNote, SetAddNote, } = useContext(NoteContext);
-
-  // Testing custom hooks
-  const { onSelected, selectedNote } = useNote();
+  const { SetNote, SetAddNote,  } = useContext(NoteContext);
+  const { setReadOnly, selectedNote, setSelectedNote, setEditor } = useContext(GlobalContext);
   const {notes} = useFetchNotes();
 
   const onClick = (note: INote) => {
     SetAddNote(false);
     SetNote(note);
-    onSelected(note)
-    SetReadOnly(true);
-    SetEditor(note.data.value);
-    SetInputValue(note.data.name);
-    SetCategory(note.data.category);
+    setSelectedNote(note)
+    setEditor(note.data.value);
+    setReadOnly(true)
+
   };
 
 
