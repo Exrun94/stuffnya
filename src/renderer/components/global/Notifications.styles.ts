@@ -17,23 +17,6 @@ export const Container = styled(motion.div)`
   background-color: ${props => props.color};
   z-index: 2;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
-
-  /* animation: fade 1s linear forwards;
-
-  @keyframes fade {
-  from {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-} */
-
 `;
 
 export const IconWrapper = styled.div<{ subColor: string }>`

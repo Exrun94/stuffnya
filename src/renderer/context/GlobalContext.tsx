@@ -14,12 +14,13 @@ type GlobalContextType = {
   setReadOnly: React.Dispatch<React.SetStateAction<boolean>>;
   selectedNote: INote;
   setSelectedNote: React.Dispatch<React.SetStateAction<INote>>;
+  noteName: string;
+  setNoteName: React.Dispatch<React.SetStateAction<string>>;
 };
 
 type GlobalContextProviderProps = {
   children: React.ReactNode;
 };
-
 
 export const GlobalContext = createContext({} as GlobalContextType);
 
@@ -30,6 +31,7 @@ export const GlobalContextProvider = ({ children }: GlobalContextProviderProps) 
   const [readOnly, setReadOnly] = useState<boolean>(false);
   const [editor, setEditor] = useState<string>('');
   const [selectedNote, setSelectedNote] = useState<INote>({} as INote);
+  const [noteName, setNoteName] = useState<string>('');
 
   return (
     <GlobalContext.Provider
@@ -46,6 +48,8 @@ export const GlobalContextProvider = ({ children }: GlobalContextProviderProps) 
         setReadOnly,
         selectedNote,
         setSelectedNote,
+        noteName,
+        setNoteName,
       }}
     >
       {children}

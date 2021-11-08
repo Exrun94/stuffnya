@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Container, IconWrapper, Icon, Message } from './Notifications.styles';
 import success from '../../../../assets/icons/icon-success.svg';
 import warning from '../../../../assets/icons/icon-warning.svg';
 import error from '../../../../assets/icons/icon-error.svg';
+
 import { INotifications } from '../../interfaces/notifications';
+import { Container, IconWrapper, Icon, Message } from './Notifications.styles';
 
 let icon: string;
 let color: string;

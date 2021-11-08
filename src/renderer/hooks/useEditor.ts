@@ -12,10 +12,11 @@ export function useEditor() {
     setNewNoteAddedTrigger,
     readOnly,
     setReadOnly,
-    selectedNote
+    selectedNote,
+    noteName,
+    setNoteName,
   } = useContext(GlobalContext);
 
-  const [inputValue, setInputValue] = useState('');
   const [category, setCategory] = useState('');
   const [color, setColor] = useState('');
   const [updateMode, setUpdateMode] = useState(false);
@@ -25,7 +26,7 @@ export function useEditor() {
       value: editor,
       date: Date.now(),
       tags: [],
-      name: inputValue || 'No Title',
+      name: noteName || 'No Title',
       category: category || categories[1].data.name, // ensures if no category is selected in the options, to use first one
       color: color || categories[1].data.color,
     };
@@ -33,7 +34,7 @@ export function useEditor() {
     await addNotes(data);
     setReadOnly(false);
     setEditor('');
-    setInputValue('');
+    setNoteName('');
     setNewNoteAddedTrigger(!newNoteAddedTrigger)
   }
 
@@ -46,7 +47,7 @@ export function useEditor() {
     setNewNoteAddedTrigger(!newNoteAddedTrigger);
     console.log(newNoteAddedTrigger);
     setEditor('');
-    setInputValue('');
+    setNoteName('');
     setReadOnly(false);
   }
 
@@ -75,12 +76,12 @@ export function useEditor() {
     onEdit,
     getOption,
     setEditor,
-    setInputValue,
     editor,
     updateMode,
     readOnly,
-    inputValue,
     selectedNote,
-    categories
+    categories,
+    noteName,
+    setNoteName,
   };
 }

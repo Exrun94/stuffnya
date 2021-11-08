@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
 import ReactQuill from 'react-quill';
 import css from 'react-quill/dist/quill.global.css';
@@ -119,4 +118,21 @@ export const BtnWrapper = styled.div`
 export const Separator = styled.div`
   border-bottom: 1px solid var(--primary-400);
   margin-top: 40px;
+`;
+
+export const TagWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+export const AddTags = styled.a`
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  font-weight: 400;
+  color: var(--primary-400);
+  &:hover {
+    color: var(--royal-base);
+    cursor: pointer;
+  }
 `;

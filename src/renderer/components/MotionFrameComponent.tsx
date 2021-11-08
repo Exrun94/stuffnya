@@ -1,16 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { useStore } from 'react-context-hook';
 import { ColorPicker, useColor } from 'react-color-palette';
-import {
-  Container,
-  MotionMenu,
-  Wrapper,
-  CloseBtn,
-  Input,
-} from './MotionFrameComponent.styles';
 import { MainButton } from './global/Button.styles';
 import { addCategory } from '../db/db';
 import { GlobalContext } from '../context/GlobalContext';
+import { Container, MotionMenu, Wrapper, CloseBtn, Input, } from './MotionFrameComponent.styles';
 
 const dropIn = {
   hidden: {

@@ -10,7 +10,6 @@ interface CategoriesData {
   color: string;
 }
 
-
 const { dispatchSuccess, dispatchError } = dispatchNotification();
 
 export async function addCategory(data: CategoriesData) {

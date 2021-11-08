@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import folderIcon from '../../../../assets/icons/folder.svg';
 import minusIcon from '../../../../assets/icons/minus.svg';
 import plusIcon from '../../../../assets/icons/plus.svg';
-import {
-  Container,
-  IconLeft,
-  IconRight,
-  RainBowText,
-  ToggledWrapper,
-} from './Categories.styles';
+import { Container, IconLeft, IconRight, RainBowText, ToggledWrapper, } from './Categories.styles';
 
 let icon = plusIcon;
 

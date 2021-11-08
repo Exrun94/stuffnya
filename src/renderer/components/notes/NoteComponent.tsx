@@ -1,26 +1,23 @@
 import React, { useContext } from 'react';
 import moment from 'moment';
 import striptags from 'striptags';
-import { NoteContext } from '../../context/NoteContext';
+
 import { INote } from '../../interfaces';
 import { useFetchNotes } from '../../hooks/useFetchNotes';
 import { GlobalContext } from '../../context/GlobalContext';
 import { Container, Category, Date, Wrapper, Name, Content, ColorIndicator, Tags, TagsWrapper } from './NoteComponent.styles';
 
 const NoteComponent = () => {
-  const { SetNote, SetAddNote,  } = useContext(NoteContext);
-  const { setReadOnly, selectedNote, setSelectedNote, setEditor } = useContext(GlobalContext);
+  const { setReadOnly, selectedNote, setSelectedNote, setEditor, setNoteName } = useContext(GlobalContext);
   const {notes} = useFetchNotes();
 
   const onClick = (note: INote) => {
-    SetAddNote(false);
-    SetNote(note);
     setSelectedNote(note)
     setEditor(note.data.value);
     setReadOnly(true)
+    setNoteName(note.data.name);
 
   };
-
 
   return (
     <>

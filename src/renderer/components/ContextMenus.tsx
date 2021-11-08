@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/ban-types */
 import React, { ReactNode } from 'react';
 import { StyledCtxMenuTrigger, StyledCtxMenu, StyledMenuItem } from './ContextMenus.styles';
 
@@ -21,7 +19,6 @@ const ContextMenus = (props: Props) => {
       <StyledCtxMenu id={id}>
         {utensils.map((menu, index) => {
           return (
-            // eslint-disable-next-line react/no-array-index-key
             <StyledMenuItem key={id + index} onClick={menu.handleClick}>
               {menu.name}
             </StyledMenuItem>
@@ -33,5 +30,3 @@ const ContextMenus = (props: Props) => {
 };
 
 export default ContextMenus;
-
-// Props to receive, Component, UniqueID, HandleClick

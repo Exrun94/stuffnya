@@ -1,17 +1,15 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable prettier/prettier */
 import React, { useState, useContext } from 'react';
-import { useStore } from 'react-context-hook';
 import folderIcon from '../../../../assets/icons/folder.svg';
 import minusIcon from '../../../../assets/icons/minus.svg';
 import plusIcon from '../../../../assets/icons/plus.svg';
-import { Container, IconLeft, IconRight, ToggledWrapper, AddNew, ColorIndicator, CategoryList, CategoryName, } from './Categories.styles';
+
+import { useStore } from 'react-context-hook';
 import { GlobalContext } from '../../context/GlobalContext';
 import { useFetchCategories } from '../../hooks/useFetchCategories';
 import { ICategories } from '../../interfaces';
+import { Container, IconLeft, IconRight, ToggledWrapper, AddNew, ColorIndicator, CategoryList, CategoryName, } from './Categories.styles';
 
 let icon = minusIcon;
-
 
 const Categories = () => {
   const [toggle, setToggle] = useState(true);

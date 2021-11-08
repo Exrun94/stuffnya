@@ -1,12 +1,10 @@
-/* eslint-disable consistent-return */
-/* eslint-disable array-callback-return */
 import React from 'react';
-import { textFormats, modules, modulesReadOnly } from './editor.config';
 import tag from '../../../../assets/icons/tag.svg';
-import { MainButton } from '../global/Button.styles';
-import { StyledReactQuill, Select, Title, Option, TagIcon,DivWrapper, BtnWrapper, Separator } from './Editor.styles';
-import { useEditor } from '../../hooks/useEditor';
 
+import { MainButton } from '../global/Button.styles';
+import { useEditor } from '../../hooks/useEditor';
+import { textFormats, modules, modulesReadOnly } from './editor.config';
+import { StyledReactQuill, Select, Title, Option, TagIcon,DivWrapper, BtnWrapper, Separator, TagWrapper, AddTags } from './Editor.styles';
 
 function RichTextEditor() {
   const {
@@ -17,13 +15,13 @@ function RichTextEditor() {
     onEdit,
     getOption,
     setEditor,
-    setInputValue,
+    setNoteName,
     editor,
     updateMode,
     readOnly,
-    inputValue,
     selectedNote,
     categories,
+    noteName,
   } = useEditor();
 
 
@@ -48,8 +46,8 @@ function RichTextEditor() {
       </BtnWrapper>
       <Title
         placeholder="Enter Title"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        value={noteName}
+        onChange={(e) => setNoteName(e.target.value)}
         disabled={readOnly}
       />
       <DivWrapper>
@@ -84,7 +82,10 @@ function RichTextEditor() {
           })}
         </Select>
         }
-        <TagIcon src={tag} />
+        <TagWrapper>
+          <TagIcon src={tag} />
+          <AddTags>Add tags</AddTags>
+        </TagWrapper>
       </DivWrapper>
       {readOnly && <Separator />}
       <StyledReactQuill

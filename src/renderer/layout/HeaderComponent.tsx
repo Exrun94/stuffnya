@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import React from 'react';
 import sgLogo from '../../../assets/icons/stuffnyata@20.png';
 import { Header, Logo } from './Layout.styles';

@@ -1,18 +1,13 @@
 import React, { useContext } from 'react';
+
+import { useFetchNotes } from '../../hooks/useFetchNotes';
 import { GlobalContext } from '../../context/GlobalContext';
-import { ActiveContext } from '../../context/ActiveContext';
 import { MainButton } from '../global/Button.styles';
-import {
-  CategoryHeading,
-  Wrapper,
-  NotesCount,
-  Search,
-  Container,
-} from './NotesHeader.styles';
+import { CategoryHeading, Wrapper, NotesCount, Search, Container, } from './NotesHeader.styles';
 
 const NotesHeader = () => {
-  const { activeCategory } = useContext(ActiveContext);
-  const { setReadOnly, setEditor } = useContext(GlobalContext);
+  const { setReadOnly, setEditor, selectedCategory } = useContext(GlobalContext);
+  const { notes } = useFetchNotes();
 
   const onClick = () => {
     setReadOnly(false);
@@ -23,9 +18,9 @@ const NotesHeader = () => {
     <>
       <Container>
         <Wrapper>
-          <CategoryHeading>{activeCategory}</CategoryHeading>
-          <NotesCount>Notes</NotesCount>
-          <Search placeholder={`Search in ${activeCategory}`} />
+          <CategoryHeading>{selectedCategory}</CategoryHeading>
+          <NotesCount>Notes: {notes.length}</NotesCount>
+          <Search placeholder={`Search in ${selectedCategory}`} />
           <MainButton width={6} onClick={onClick}>
             Add Note
           </MainButton>
