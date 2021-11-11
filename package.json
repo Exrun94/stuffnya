@@ -236,7 +236,6 @@
     "styled-components": "^5.3.1",
     "use-electron-context-menu": "^1.0.2",
     "uuid": "^8.3.2"
-
   },
   "devEngines": {
     "node": ">=14.x",
