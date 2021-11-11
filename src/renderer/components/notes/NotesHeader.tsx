@@ -6,12 +6,14 @@ import { MainButton } from '../global/Button.styles';
 import { CategoryHeading, Wrapper, NotesCount, Search, Container, } from './NotesHeader.styles';
 
 const NotesHeader = () => {
-  const { setReadOnly, setEditor, selectedCategory } = useContext(GlobalContext);
+  const { setReadOnly, setEditor, selectedCategory, setNoteName, setUpdateMode } = useContext(GlobalContext);
   const { notes } = useFetchNotes();
 
   const onClick = () => {
     setReadOnly(false);
     setEditor('');
+    setNoteName('');
+    setUpdateMode(false);
   };
 
   return (

@@ -8,8 +8,10 @@ import { GlobalContextProvider } from './context/GlobalContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/toast.global.css';
 
+
 const Main = () => {
   DefaultCategories();
+
   return (
     <>
       <GlobalStyle />

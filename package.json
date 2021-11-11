@@ -164,6 +164,7 @@
     "@types/react-test-renderer": "^17.0.1",
     "@types/styled-components": "^5.1.14",
     "@types/terser-webpack-plugin": "^5.0.4",
+    "@types/uuid": "^8.3.1",
     "@types/webpack-env": "^1.16.2",
     "browserslist-config-erb": "^0.0.3",
     "chalk": "^4.1.2",
@@ -233,7 +234,8 @@
     "regenerator-runtime": "^0.13.9",
     "striptags": "^3.2.0",
     "styled-components": "^5.3.1",
-    "use-electron-context-menu": "^1.0.2"
+    "use-electron-context-menu": "^1.0.2",
+    "uuid": "^8.3.2"
   },
   "devEngines": {
     "node": ">=14.x",

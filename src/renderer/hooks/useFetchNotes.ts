@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { fetchNotes } from "../db/db";
+import { fetchAllNotes, fetchNotes } from "../db/db";
 import { GlobalContext } from '../context/GlobalContext';
 import { INote } from "../interfaces";
 
@@ -9,8 +9,14 @@ export const useFetchNotes = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await fetchNotes(selectedCategory || 'ALL');
-      setNotes(result);
+      if(selectedCategory === 'ALL') {
+        const result = await fetchAllNotes();
+        setNotes(result);
+      }
+      else {
+        const result = await fetchNotes(selectedCategory);
+        setNotes(result);
+      }
     }
     fetchData();
   }, [selectedCategory, newNoteAddedTrigger]);

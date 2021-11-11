@@ -1,5 +1,5 @@
 import React from 'react';
-import MotionFrameComponent from '../components/MotionFrameComponent';
+import MotionFrameComponent from '../components/category/MotionFrameComponent';
 import HeaderComponent from './HeaderComponent';
 import SideNavComponent from './SideNavComponent';
 import CategoriesComponent from './CategoriesComponent';

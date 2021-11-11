@@ -11,10 +11,9 @@ export const useFetchCategories = () => {
 
     setTimeout(async() => {
 
-        const result = await fetchCategories();
-        setCategories(result);
-        console.log('fetched');
-    }, 200)
+        const data = await fetchCategories();
+        setCategories(data);
+    }, 0)
 
   }, [newCategoryAddedTrigger]);
 

@@ -11,11 +11,6 @@ async function DefaultCategories(): Promise<void> {
 
   try {
     await db.collection('categories').add({
-      name: 'ALL',
-      color: '#fff',
-    });
-
-    await db.collection('categories').add({
       name: 'WordPress',
       color: '#21759b',
     });

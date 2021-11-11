@@ -1,6 +1,6 @@
 import Localbase from 'localbase';
 import { dispatchNotification } from '../helpers/notifications';
-import { INoteData, INote } from '../interfaces'
+import { INote, } from '../interfaces'
 
 const db = new Localbase('db');
 db.config.debug = true;
@@ -9,6 +9,7 @@ interface CategoriesData {
   name: string;
   color: string;
 }
+
 
 const { dispatchSuccess, dispatchError } = dispatchNotification();
 
@@ -26,38 +27,43 @@ export async function fetchCategories() {
     const result = await db
       .collection('categories')
       .orderBy('name', 'asc')
-      .get({ keys: true });
+      .get({keys: true});
     return result;
   } catch (error) {
     return dispatchError('Error fetching categories', '💥');
   }
 }
 
+export async function fetchAllNotes() {
+  let notes: INote[] = [];
+  const categories: CategoriesData[] = await db.collection('categories').get();
+
+  await Promise.all(categories.map(async (category) => {
+    const data = await db.collection(category.name).get();
+    data.forEach((d: INote) => { notes.push(d)})
+  }));
+
+  return notes;
+}
+
+
 export async function getNotes(category: string) {
   try {
     const categories = await db
       .collection(category)
       .orderBy('date', 'desc')
-      .get({ keys: true });
+      .get();
     return categories;
   } catch (error) {
     return dispatchError('Failed to fetch', '🤷‍♂️')
   }
 }
 
-async function addAll(data: INoteData, key: string) {
-  try {
-    await db.collection('ALL').add(data, key);
-  } catch (error) {
-    console.log('error: ', error);
-  }
-}
 
-export async function addNotes(data: INoteData) {
+export async function addNotes(data: INote) {
   try {
-    let result = await db.collection(data.category).add(data);
-    addAll(data, result.data.key);
-    dispatchSuccess('CREATED: \n' + data.name)
+    await db.collection(data.category).add(data);
+    dispatchSuccess('CREATED: \n' + data.title)
   } catch (error) {
     const errorMsg = (error as Error)
     return dispatchError(errorMsg, '🤷‍♂️')
@@ -69,7 +75,7 @@ export async function fetchNotes(category: string) {
     const categories = await db
       .collection(category)
       .orderBy('date', 'desc')
-      .get({ keys: true });
+      .get();
     return categories;
   } catch (error) {
     return dispatchError('Failed to fetch', '🤷‍♂️')
@@ -78,19 +84,20 @@ export async function fetchNotes(category: string) {
 
 export async function updateNote(data: INote) {
   try {
-    const result = await db.collection(data.data.category)
-    .doc(data.key)
-    .update({ data })
-    return result
+
+    await db.collection(data.category)
+    .doc({ id: data.id })
+    .update(data)
+
+    dispatchSuccess('UPDATE Successful')
   } catch (error) {
-    return console.log('error: ', error);
+    return dispatchError('UPDATE Fail', '🤷‍♂️')
   }
 
 }
-export async function deleteNote(category: string, key: string) {
+export async function deleteNote(note: INote) {
   try {
-    await db.collection(category).doc(key).delete();
-    await db.collection('ALL').doc(key).delete();
+    await db.collection(note.category).doc({ id: note.id }).delete();
     return dispatchSuccess('Deleted successfully! 💪')
   } catch (error) {
     const errorMsg = (error as Error)

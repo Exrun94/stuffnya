@@ -16,6 +16,8 @@ type GlobalContextType = {
   setSelectedNote: React.Dispatch<React.SetStateAction<INote>>;
   noteName: string;
   setNoteName: React.Dispatch<React.SetStateAction<string>>;
+  updateMode: boolean;
+  setUpdateMode: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 type GlobalContextProviderProps = {
@@ -32,6 +34,8 @@ export const GlobalContextProvider = ({ children }: GlobalContextProviderProps) 
   const [editor, setEditor] = useState<string>('');
   const [selectedNote, setSelectedNote] = useState<INote>({} as INote);
   const [noteName, setNoteName] = useState<string>('');
+  const [updateMode, setUpdateMode] = useState(false);
+
 
   return (
     <GlobalContext.Provider
@@ -50,6 +54,8 @@ export const GlobalContextProvider = ({ children }: GlobalContextProviderProps) 
         setSelectedNote,
         noteName,
         setNoteName,
+        updateMode,
+        setUpdateMode,
       }}
     >
       {children}

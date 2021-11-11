@@ -7,16 +7,15 @@ import { useStore } from 'react-context-hook';
 import { GlobalContext } from '../../context/GlobalContext';
 import { useFetchCategories } from '../../hooks/useFetchCategories';
 import { ICategories } from '../../interfaces';
-import { Container, IconLeft, IconRight, ToggledWrapper, AddNew, ColorIndicator, CategoryList, CategoryName, } from './Categories.styles';
+import { Container, IconLeft, IconRight, ToggledWrapper, AddNew, ColorIndicator, CategoryList, CategoryName,  } from './Categories.styles';
 
 let icon = minusIcon;
 
 const Categories = () => {
   const [toggle, setToggle] = useState(true);
   const [active, setActive] = useState<ICategories>();
+  const [activeAll, setActiveAll] = useState(false);
   const [state, setState] = useStore('state', false);
-
-  //new way
   const { setSelectedCategory } = useContext(GlobalContext);
   const { categories } = useFetchCategories();
 
@@ -32,7 +31,14 @@ const Categories = () => {
 
   const onClick = (el: ICategories): void => {
     setActive(el);
+    setActiveAll(false)
     setSelectedCategory(el.data.name)
+  }
+
+  const onClickAll = (): void => {
+    setActiveAll(true);
+    setActive(undefined);
+    setSelectedCategory('ALL');
   }
 
   return (
@@ -44,6 +50,10 @@ const Categories = () => {
       </Container>
       <ToggledWrapper open={toggle}>
         <AddNew onClick={() => setState(!state)}>+ Add New</AddNew>
+        <CategoryList onClick={onClickAll} className={activeAll ? "active" : ""}>
+          <ColorIndicator color="#fff"/>
+          <CategoryName>All</CategoryName>
+        </CategoryList>
         {categories.map((el) => {
         return (
           <CategoryList key={el.key} onClick={() => onClick(el)} className={el === active ? "active" : ""}>

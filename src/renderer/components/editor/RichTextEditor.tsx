@@ -51,9 +51,8 @@ function RichTextEditor() {
         disabled={readOnly}
       />
       <DivWrapper>
-        {readOnly ? <Select disabled={readOnly} value={selectedNote.data?.category}>
+        {readOnly ? <Select disabled={readOnly} value={selectedNote?.category}>
           {categories?.map((c) => {
-            if (c.data.name !== 'ALL') {
               return (
                 <Option
                   key={c.key}
@@ -63,12 +62,10 @@ function RichTextEditor() {
                   {c.data.name}
                 </Option>
               );
-            }
           })}
         </Select> :
         <Select onChange={(e) => getOption(e)}>
           {categories?.map((c) => {
-            if (c.data.name !== 'ALL') {
               return (
                 <Option
                   key={c.key}
@@ -78,7 +75,6 @@ function RichTextEditor() {
                   {c.data.name}
                 </Option>
               );
-            }
           })}
         </Select>
         }

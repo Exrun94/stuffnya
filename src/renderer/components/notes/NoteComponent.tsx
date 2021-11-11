@@ -13,9 +13,10 @@ const NoteComponent = () => {
 
   const onClick = (note: INote) => {
     setSelectedNote(note)
-    setEditor(note.data.value);
+    setEditor(note.note);
     setReadOnly(true)
-    setNoteName(note.data.name);
+    setNoteName(note.title);
+    console.log(note);
 
   };
 
@@ -24,17 +25,17 @@ const NoteComponent = () => {
       {notes.map((note) => {
         return (
           <ColorIndicator
-            key={note.data.date}
-            color={note.data.color}
+            key={note.id}
+            color={note.color}
             onClick={() => onClick(note)}
           >
             <Container className={note === selectedNote ? 'active' : ''}>
               <Wrapper>
-                <Category>{note.data.category}</Category>
-                <Date>{moment(note.data.date).format('DD/MM/YY HH:mm')}</Date>
+                <Category>{note.category}</Category>
+                <Date>{moment(note.date).format('DD/MM/YY HH:mm')}</Date>
               </Wrapper>
-              <Name>{note.data.name}</Name>
-              <Content>{striptags(note.data.value)}</Content>
+              <Name>{note.title}</Name>
+              <Content>{striptags(note.note)}</Content>
               <TagsWrapper>
                 <Tags>htaccess</Tags>
                 <Tags>Wordpress</Tags>
