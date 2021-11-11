@@ -5,7 +5,7 @@ import { ICategories } from "../interfaces";
 
 export const useFetchCategories = () => {
   const [categories, setCategories] = useState<ICategories[]>([]);
-  const {newCategoryAddedTrigger} = useContext(GlobalContext);
+  const {newCategoryAddedTrigger, newNoteAddedTrigger} = useContext(GlobalContext);
 
   useEffect(() => {
 
@@ -15,7 +15,7 @@ export const useFetchCategories = () => {
         setCategories(data);
     }, 0)
 
-  }, [newCategoryAddedTrigger]);
+  }, [newCategoryAddedTrigger, newNoteAddedTrigger]);
 
   return {categories};
 }

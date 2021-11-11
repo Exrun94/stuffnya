@@ -7,7 +7,8 @@ import { useStore } from 'react-context-hook';
 import { GlobalContext } from '../../context/GlobalContext';
 import { useFetchCategories } from '../../hooks/useFetchCategories';
 import { ICategories } from '../../interfaces';
-import { Container, IconLeft, IconRight, ToggledWrapper, AddNew, ColorIndicator, CategoryList, CategoryName,  } from './Categories.styles';
+import { useFetchNotes } from '../../hooks/useFetchNotes';
+import { Container, IconLeft, IconRight, ToggledWrapper, AddNew, ColorIndicator, CategoryList, CategoryName, NotesCount } from './Categories.styles';
 
 let icon = minusIcon;
 
@@ -18,6 +19,12 @@ const Categories = () => {
   const [state, setState] = useStore('state', false);
   const { setSelectedCategory } = useContext(GlobalContext);
   const { categories } = useFetchCategories();
+  const {notes} = useFetchNotes();
+
+  const findNotesLength = (categoryName: string) => {
+    const notesLength = notes.filter((note) => note.category === categoryName);
+    return notesLength.length;
+  };
 
   const toggleSwitch: React.MouseEventHandler<HTMLDivElement> = (): void => {
     setToggle(!toggle);
@@ -53,12 +60,14 @@ const Categories = () => {
         <CategoryList onClick={onClickAll} className={activeAll ? "active" : ""}>
           <ColorIndicator color="#fff"/>
           <CategoryName>All</CategoryName>
+          <NotesCount>{notes.length}</NotesCount>
         </CategoryList>
         {categories.map((el) => {
         return (
           <CategoryList key={el.key} onClick={() => onClick(el)} className={el === active ? "active" : ""}>
             <ColorIndicator color={el.data.color}/>
             <CategoryName>{el.data.name}</CategoryName>
+            <NotesCount>{findNotesLength(el.data.name)}</NotesCount>
           </CategoryList>
         );
       })}

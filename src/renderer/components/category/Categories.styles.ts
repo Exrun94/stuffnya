@@ -36,6 +36,7 @@ export const IconRight = styled.img`
   width: 20px;
   height: 20px;
   margin-left: auto;
+  outline: none;
 `;
 
 export const ToggledWrapper = styled.div<ToggleWrapperProps>`
@@ -71,8 +72,8 @@ export const ColorIndicator = styled.div`
   border-radius: 50%;
   background-color: ${(props) => props.color};
   box-shadow: 0px 0px 5px ${(props) => props.color};
-  //cursor: pointer;
 `;
+
 
 export const CategoryList = styled.div`
   display: flex;
@@ -100,6 +101,22 @@ export const CategoryName = styled.p`
   padding-left: 12px;
 `;
 
+export const NotesCount = styled.div`
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+  font-weight: 400;
+  line-height: 16px;
+  background-color: var(--primary-800);
+  width: 32px;
+  height: 12;
+  border-radius: 7px;
+  margin-left: auto;
+  margin-right: 16px;
+  text-align: center;
+
+`;
+
 export const RainBowText = styled.p`
   text-align: center;
   font-family:arial black;
@@ -115,3 +132,4 @@ export const RainBowText = styled.p`
     background-position: 4500vh;
   }
 `;
+
