@@ -39,7 +39,7 @@ export async function fetchAllNotes() {
   const categories: CategoriesData[] = await db.collection('categories').get();
 
   await Promise.all(categories.map(async (category) => {
-    const data = await db.collection(category.name).get();
+    const data = await db.collection(category.name).orderBy('date', 'desc').get();
     data.forEach((d: INote) => { notes.push(d)})
   }));
 
@@ -51,7 +51,7 @@ export async function getNotes(category: string) {
   try {
     const categories = await db
       .collection(category)
-      .orderBy('date', 'desc')
+      .orderBy('date', 'asc')
       .get();
     return categories;
   } catch (error) {

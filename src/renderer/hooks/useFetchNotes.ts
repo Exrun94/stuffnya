@@ -11,7 +11,13 @@ export const useFetchNotes = () => {
     async function fetchData() {
       if(selectedCategory === 'ALL') {
         const result = await fetchAllNotes();
-        setNotes(result);
+
+        const sortedNotes = result.sort((a, b) => {
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        } );
+
+        setNotes(sortedNotes);
+
       }
       else {
         const result = await fetchNotes(selectedCategory);
