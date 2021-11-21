@@ -1,6 +1,11 @@
 import React, { createContext, useState } from 'react';
 import { INote } from '../interfaces';
 
+type promptStateType = {
+  state: boolean;
+  type: string;
+}
+
 type GlobalContextType = {
   selectedCategory: string;
   setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
@@ -18,6 +23,12 @@ type GlobalContextType = {
   setNoteName: React.Dispatch<React.SetStateAction<string>>;
   updateMode: boolean;
   setUpdateMode: React.Dispatch<React.SetStateAction<boolean>>;
+  promptState: promptStateType;
+  setPromptState: React.Dispatch<React.SetStateAction<promptStateType>>;
+  notes: INote[];
+  setNotes: React.Dispatch<React.SetStateAction<INote[]>>;
+  searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 };
 
 type GlobalContextProviderProps = {
@@ -35,6 +46,9 @@ export const GlobalContextProvider = ({ children }: GlobalContextProviderProps) 
   const [selectedNote, setSelectedNote] = useState<INote>({} as INote);
   const [noteName, setNoteName] = useState<string>('');
   const [updateMode, setUpdateMode] = useState(false);
+  const [promptState, setPromptState] = useState({state: false, type: 'NONE'});
+  const [notes, setNotes] = useState<INote[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
 
   return (
@@ -56,6 +70,12 @@ export const GlobalContextProvider = ({ children }: GlobalContextProviderProps) 
         setNoteName,
         updateMode,
         setUpdateMode,
+        promptState,
+        setPromptState,
+        notes,
+        setNotes,
+        searchTerm,
+        setSearchTerm,
       }}
     >
       {children}

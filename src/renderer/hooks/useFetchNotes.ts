@@ -1,11 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { fetchAllNotes, fetchNotes } from "../db/db";
 import { GlobalContext } from '../context/GlobalContext';
-import { INote } from "../interfaces";
 
 export const useFetchNotes = () => {
-  const { selectedCategory, newNoteAddedTrigger } = useContext(GlobalContext);
-  const [notes, setNotes] = useState<INote[]>([]);
+  const { selectedCategory, newNoteAddedTrigger, notes, setNotes } = useContext(GlobalContext);
 
   useEffect(() => {
     async function fetchData() {

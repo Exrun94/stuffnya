@@ -5,6 +5,7 @@ import { addNotes, deleteNote, updateNote } from '../db/db';
 import { INote } from '../interfaces';
 import { v4 as uuidv4 } from 'uuid';
 
+
 export function useEditor() {
   const { categories } = useFetchCategories();
   const {
@@ -18,7 +19,7 @@ export function useEditor() {
     noteName,
     setNoteName,
     updateMode,
-    setUpdateMode
+    setUpdateMode,
   } = useContext(GlobalContext);
 
   const [category, setCategory] = useState('');
@@ -44,6 +45,7 @@ export function useEditor() {
 
   function onCancel() {
     setReadOnly(true);
+    setEditor(selectedNote.note);
   }
   async function onDelete() {
     await deleteNote(selectedNote)

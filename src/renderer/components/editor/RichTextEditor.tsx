@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import tag from '../../../../assets/icons/tag.svg';
 
 import { MainButton } from '../global/Button.styles';
 import { useEditor } from '../../hooks/useEditor';
+import { GlobalContext } from '../../context/GlobalContext';
 import { textFormats, modules, modulesReadOnly } from './editor.config';
 import { StyledReactQuill, Select, Title, Option, TagIcon,DivWrapper, BtnWrapper, Separator, TagWrapper, AddTags } from './Editor.styles';
 
 function RichTextEditor() {
+  const { setPromptState } = useContext(GlobalContext);
   const {
     onSave,
-    onCancel,
-    onDelete,
     onUpdate,
     onEdit,
     getOption,
@@ -37,10 +37,10 @@ function RichTextEditor() {
         {!readOnly && updateMode && <MainButton width={6} onClick={onUpdate}>
           Update
         </MainButton>}
-        {!readOnly && <MainButton width={6} onClick={onCancel}>
+        {!readOnly && <MainButton width={6} onClick={() => setPromptState({state: true, type: 'CANCEL_NOTE_EDIT'})}>
           Cancel
         </MainButton>}
-        {readOnly && <MainButton width={6} onClick={onDelete}>
+        {readOnly && <MainButton width={6} onClick={() => setPromptState({state: true, type: 'DELETE_NOTE'})}>
           Delete
         </MainButton>}
       </BtnWrapper>

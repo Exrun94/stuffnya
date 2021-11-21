@@ -8,7 +8,7 @@ import { GlobalContext } from '../../context/GlobalContext';
 import { Container, Category, Date, Wrapper, Name, Content, ColorIndicator, Tags, TagsWrapper } from './NoteComponent.styles';
 
 const NoteComponent = () => {
-  const { setReadOnly, selectedNote, setSelectedNote, setEditor, setNoteName } = useContext(GlobalContext);
+  const { setReadOnly, selectedNote, setSelectedNote, setEditor, setNoteName, searchTerm } = useContext(GlobalContext);
   const {notes} = useFetchNotes();
 
   const onClick = (note: INote) => {
@@ -16,13 +16,21 @@ const NoteComponent = () => {
     setEditor(note.note);
     setReadOnly(true)
     setNoteName(note.title);
-    console.log(note);
-
   };
 
   return (
     <>
-      {notes.map((note) => {
+      {notes.filter((note) => {
+        if(searchTerm == "") {
+          return note
+        } else if (note.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return note
+        } else if (note.note.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return note
+        } else if (note.tags.map((tag) => tag.toLowerCase()).includes(searchTerm.toLowerCase())) {
+          return note
+        }
+      }).map((note) => {
         return (
           <ColorIndicator
             key={note.id}
