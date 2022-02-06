@@ -1,24 +1,11 @@
-## Quill-Editor Styles
+## Important
 
-- **To add the correct styles to the React-Quill Editor move the following file**
+- **Due to not yet resolved issue with Webpack, run the below command from the project root **
 ```
-src/renderer/quill.global.css
-to
-node_modules/react-quill/dist
+mv  src/renderer/quill.global.css node_modules/react-quill/dist && mv src/renderer/toast.global.css node_modules/react-toastify/dist/
 ```
 <br>
 
-## Install
-
-- **If you have installation or compilation issues with this project, please see [our debugging guide](https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues/400)**
-
-First, clone the repo via git and install dependencies:
-
-```bash
-git clone --depth 1 --branch main https://github.com/electron-react-boilerplate/electron-react-boilerplate.git your-project-name
-cd your-project-name
-npm install
-```
 
 ## Starting Development
 
