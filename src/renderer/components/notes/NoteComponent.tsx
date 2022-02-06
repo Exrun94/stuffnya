@@ -45,8 +45,8 @@ const NoteComponent = () => {
               <Name>{note.title}</Name>
               <Content>{striptags(note.note)}</Content>
               <TagsWrapper>
-                <Tags>htaccess</Tags>
-                <Tags>Wordpress</Tags>
+                <Tags>tag1</Tags>
+                <Tags>tag2</Tags>
               </TagsWrapper>
             </Container>
           </ColorIndicator>

@@ -1,11 +1,6 @@
 import React from 'react';
-import sgLogo from '../../../assets/icons/stuffnyata@20.png';
+import sgLogo from '../../../assets/icons/stuffnya.svg';
 import { Header, Logo } from './Layout.styles';
-
-/*
-Custom Logo svg can be found in the assets folder stuffnyata.svg
-made at https://boxy-svg.com/app/disk:5VwTTsTI7S
-*/
 
 const HeaderComponent: React.FC = () => {
   return (
