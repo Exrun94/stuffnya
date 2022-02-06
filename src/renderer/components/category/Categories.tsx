@@ -3,12 +3,10 @@ import folderIcon from '../../../../assets/icons/folder.svg';
 import minusIcon from '../../../../assets/icons/minus.svg';
 import plusIcon from '../../../../assets/icons/plus.svg';
 
-import { useStore } from 'react-context-hook';
 import { GlobalContext } from '../../context/GlobalContext';
 import { useFetchCategories } from '../../hooks/useFetchCategories';
 import { ICategories } from '../../interfaces';
-import { useFetchNotes } from '../../hooks/useFetchNotes';
-import { Container, IconLeft, IconRight, ToggledWrapper, AddNew, ColorIndicator, CategoryList, CategoryName, NotesCount } from './Categories.styles';
+import { Container, IconLeft, IconRight, ToggledWrapper, ColorIndicator, CategoryList, CategoryName, } from './Categories.styles';
 
 let icon = minusIcon;
 
@@ -16,15 +14,8 @@ const Categories = () => {
   const [toggle, setToggle] = useState(true);
   const [active, setActive] = useState<ICategories>();
   const [activeAll, setActiveAll] = useState(false);
-  const [state, setState] = useStore('state', false);
   const { setSelectedCategory } = useContext(GlobalContext);
   const { categories } = useFetchCategories();
-  const {notes} = useFetchNotes();
-
-  const findNotesLength = (categoryName: string) => {
-    const notesLength = notes.filter((note) => note.category === categoryName);
-    return notesLength.length;
-  };
 
   const toggleSwitch: React.MouseEventHandler<HTMLDivElement> = (): void => {
     setToggle(!toggle);
@@ -56,18 +47,15 @@ const Categories = () => {
         <IconRight src={icon} />
       </Container>
       <ToggledWrapper open={toggle}>
-        <AddNew onClick={() => setState(!state)}>+ Add New</AddNew>
         <CategoryList onClick={onClickAll} className={activeAll ? "active" : ""}>
           <ColorIndicator color="#fff"/>
           <CategoryName>All</CategoryName>
-          <NotesCount>{notes.length}</NotesCount>
         </CategoryList>
         {categories.map((el) => {
         return (
           <CategoryList key={el.key} onClick={() => onClick(el)} className={el === active ? "active" : ""}>
             <ColorIndicator color={el.data.color}/>
             <CategoryName>{el.data.name}</CategoryName>
-            <NotesCount>{findNotesLength(el.data.name)}</NotesCount>
           </CategoryList>
         );
       })}
