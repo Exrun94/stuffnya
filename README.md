@@ -1,6 +1,6 @@
 ## Important
 
-- **Due to not yet resolved issue with Webpack, run the below command from the project root**
+- **Due to not yet resolved issue with Webpack, run the below command from the project root before running ```npm start```  for first time**
 ```
 mv  src/renderer/quill.global.css node_modules/react-quill/dist && mv src/renderer/toast.global.css node_modules/react-toastify/dist/
 ```
