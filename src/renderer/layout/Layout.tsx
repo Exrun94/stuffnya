@@ -1,31 +1,31 @@
-/* eslint-disable no-underscore-dangle */
 import React, { useContext } from 'react';
-import { useStoreState } from 'react-context-hook';
-import MotionFrameComponent from '../components/MotionFrameComponent';
-import { Container } from './Layout.styles';
+import MotionFrameComponent from '../components/category/MotionFrameComponent';
 import HeaderComponent from './HeaderComponent';
 import SideNavComponent from './SideNavComponent';
 import CategoriesComponent from './CategoriesComponent';
 import EditorComponent from './EditorComponent';
 import NotesComponent from './NotesComponent';
 import ClientComponent from './ClientComponent';
-import { NoteContext } from '../context/NoteContext';
-import RichText from '../components/editor/RichText';
+import Prompt from '../components/global/Prompt';
+
+import { useStoreState } from 'react-context-hook';
+import { Container } from './Layout.styles';
+import { GlobalContext } from '../context/GlobalContext';
 
 const Layout = () => {
   const store = useStoreState();
-  const { addNote } = useContext(NoteContext);
+  const { promptState } = useContext(GlobalContext)
 
   return (
     <>
       <Container>
         {store.state && <MotionFrameComponent />}
+        { promptState.state && <Prompt />}
         <HeaderComponent />
         <SideNavComponent />
         <CategoriesComponent />
         <NotesComponent />
-        {addNote && <EditorComponent />}
-        {!addNote && <RichText />}
+        <EditorComponent />
         <ClientComponent />
       </Container>
     </>

@@ -1,27 +1,24 @@
 import React from 'react';
-import { withStore } from 'react-context-hook';
-import { CategoriesContextProvider } from './context/CategoriesContext';
-import GlobalStyle from './Global.styles';
 import Layout from './layout/Layout';
-import { EditorContextProvider } from './context/EditorContext';
-import { ActiveContextProvider } from './context/ActiveContext';
-import { NoteContextProvider } from './context/NoteContext';
-// import { destroyDB } from './db/db';
+import DefaultCategories from './db/DefaultCategories';
+import GlobalStyle from './Global.styles';
+
+import { withStore } from 'react-context-hook';
+import { GlobalContextProvider } from './context/GlobalContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/toast.global.css';
+
 
 const Main = () => {
-  // destroyDB();
+  DefaultCategories();
+
   return (
     <>
       <GlobalStyle />
-      <ActiveContextProvider>
-        <NoteContextProvider>
-          <EditorContextProvider>
-            <CategoriesContextProvider>
-              <Layout />
-            </CategoriesContextProvider>
-          </EditorContextProvider>
-        </NoteContextProvider>
-      </ActiveContextProvider>
+      <GlobalContextProvider>
+        <ToastContainer />
+        <Layout />
+      </GlobalContextProvider>
     </>
   );
 };

@@ -1,69 +1,59 @@
-/* eslint-disable consistent-return */
-/* eslint-disable array-callback-return */
-import React, { useContext, useState } from 'react';
-import { CategoriesContext } from '../../context/CategoriesContext';
-import { EditorContext } from '../../context/EditorContext';
-import { textFormats, modules } from './editor.config';
+import React, { useContext } from 'react';
 import tag from '../../../../assets/icons/tag.svg';
+
 import { MainButton } from '../global/Button.styles';
-import { addNotes } from '../../db/Notes';
-import { NoteContext } from '../../context/NoteContext';
-import {
-  StyledReactQuill,
-  Select,
-  Title,
-  Option,
-  TagIcon,
-  DivWrapper,
-  BtnWrapper,
-} from './Editor.styles';
+import { useEditor } from '../../hooks/useEditor';
+import { GlobalContext } from '../../context/GlobalContext';
+import { textFormats, modules, modulesReadOnly } from './editor.config';
+import { StyledReactQuill, Select, Title, Option, TagIcon,DivWrapper, BtnWrapper, Separator, TagWrapper, } from './Editor.styles';
+
 
 function RichTextEditor() {
-  const { editor, setEditor } = useContext(EditorContext);
+  const { setPromptState } = useContext(GlobalContext);
+  const {
+    onSave,
+    onUpdate,
+    onEdit,
+    getOption,
+    setEditor,
+    setNoteName,
+    editor,
+    updateMode,
+    readOnly,
+    selectedNote,
+    categories,
+    noteName,
+  } = useEditor();
 
-  const { categories } = useContext(CategoriesContext);
-  const [inputValue, setInputValue] = useState<string | null>(null);
-  const [category, setCategory] = useState('');
-  const [color, setColor] = useState('');
-  const { noteDispatch, setNoteDispatch } = useContext(NoteContext);
-
-  const onSave = async () => {
-    const data = {
-      value: editor,
-      date: Date.now(),
-      tags: [],
-      name: inputValue || 'No Title',
-      category: category || categories[1].data.name, // ensures if no category is selected in the options, to use first one
-      color: color || categories[1].data.color,
-    };
-
-    await addNotes(data);
-    setNoteDispatch(!noteDispatch);
-  };
-
-  const getOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const index = e.target.selectedIndex;
-    const optionElement = e.target.children[index];
-    const option = optionElement.getAttribute('data-color');
-    setCategory(e.target.value);
-    setColor(option || '#fff');
-  };
 
   return (
     <>
       <BtnWrapper>
-        <MainButton width={6} onClick={onSave}>
+        {!readOnly && !updateMode && <MainButton width={6} onClick={onSave}>
           Save
-        </MainButton>
+        </MainButton>}
+        {readOnly && <MainButton width={6} onClick={onEdit}>
+          Edit
+        </MainButton>}
+        {!readOnly && updateMode && <MainButton width={6} onClick={onUpdate}>
+          Update
+        </MainButton>}
+        {!readOnly && <MainButton width={6} onClick={() => setPromptState({state: true, type: 'CANCEL_NOTE_EDIT'})}>
+          Cancel
+        </MainButton>}
+        {readOnly && <MainButton width={6} onClick={() => setPromptState({state: true, type: 'DELETE_NOTE'})}>
+          Delete
+        </MainButton>}
       </BtnWrapper>
       <Title
         placeholder="Enter Title"
-        onChange={(e) => setInputValue(e.target.value)}
+        value={noteName}
+        onChange={(e) => setNoteName(e.target.value)}
+        disabled={readOnly}
       />
       <DivWrapper>
-        <Select onChange={(e) => getOption(e)}>
+        {readOnly ? <Select disabled={readOnly} value={selectedNote?.category}>
           {categories?.map((c) => {
-            if (c.data.name !== 'ALL') {
               return (
                 <Option
                   key={c.key}
@@ -73,17 +63,34 @@ function RichTextEditor() {
                   {c.data.name}
                 </Option>
               );
-            }
+          })}
+        </Select> :
+        <Select onChange={(e) => getOption(e)}>
+          {categories?.map((c) => {
+              return (
+                <Option
+                  key={c.key}
+                  value={c.data.name}
+                  data-color={c.data.color}
+                >
+                  {c.data.name}
+                </Option>
+              );
           })}
         </Select>
-        <TagIcon src={tag} />
+        }
+        <TagWrapper>
+          <TagIcon src={tag} />
+        </TagWrapper>
       </DivWrapper>
+      {readOnly && <Separator />}
       <StyledReactQuill
         value={editor}
         onChange={setEditor}
         placeholder="Start a new Note"
-        modules={modules}
+        modules={!readOnly ? modules : modulesReadOnly}
         formats={textFormats}
+        readOnly={readOnly}
       />
     </>
   );
