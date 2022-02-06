@@ -5,7 +5,8 @@ import { MainButton } from '../global/Button.styles';
 import { useEditor } from '../../hooks/useEditor';
 import { GlobalContext } from '../../context/GlobalContext';
 import { textFormats, modules, modulesReadOnly } from './editor.config';
-import { StyledReactQuill, Select, Title, Option, TagIcon,DivWrapper, BtnWrapper, Separator, TagWrapper, AddTags } from './Editor.styles';
+import { StyledReactQuill, Select, Title, Option, TagIcon,DivWrapper, BtnWrapper, Separator, TagWrapper, } from './Editor.styles';
+
 
 function RichTextEditor() {
   const { setPromptState } = useContext(GlobalContext);
@@ -80,7 +81,6 @@ function RichTextEditor() {
         }
         <TagWrapper>
           <TagIcon src={tag} />
-          <AddTags>Add tags</AddTags>
         </TagWrapper>
       </DivWrapper>
       {readOnly && <Separator />}
